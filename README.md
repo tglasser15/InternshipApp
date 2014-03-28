@@ -27,6 +27,13 @@ The following project requires the following software in order to use: <br>
 <h3>Getting Started</h3> <br>
 <ul>
 <li> Install Visual Studio 2012 and SDK components listed above</li>
-<li><b>Retrieve API Keys</b> from <a href="https://dev.twitter.com/">Twitter Development</a>
+<li><b>Retrieve API Keys</b> from <a href="https://dev.twitter.com/">Twitter Development</a> - you must create your own application to retrieve the keys needed for the following snippet of code: </li>
+{...
+        //register application on https://dev.twitter.com/ to retrieve API keys below
+        private string API_key = "Enter API Key Here";
+        private string API_secret = "Enter API Secret Here";
+        private string AccessToken = "Enter Access Token Here";
+        private string AccessToken_secret = "Enter Access Token Secret Here";
+...}
 </ul>
 
