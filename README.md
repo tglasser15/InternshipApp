@@ -19,6 +19,7 @@ The following project requires the following software in order to use: <br>
 <ul>
 	<li>Visual Studio 2012
     <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30668">Visual Studio 2012 SDK</a>
+    <li>[Windows Software Development Kit (SDK) for Windows 8.1](http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx)
 </ul>
 
 <h3>Getting Started <br>
