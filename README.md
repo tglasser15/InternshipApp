@@ -26,7 +26,7 @@ The following project requires the following software in order to use: <br>
 </ul>
 
 
-<h3>Getting Started</h3> <br>
+<h3>Getting Started</h3>
 <ul>
 <li> Install Visual Studio 2012 and SDK components listed above</li>
 <li><b>Download the .zip file</b> This folder contains the project.</li>
