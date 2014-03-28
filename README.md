@@ -27,6 +27,6 @@ The following project requires the following software in order to use: <br>
 <h3>Getting Started</h3> <br>
 <ul>
 <li> Install Visual Studio 2012 and SDK components listed above</li>
-<li><b>Retrieve API Keys</b>
+<li><b>Retrieve API Keys</b> from <a href="https://dev.twitter.com/">Twitter Development</a>
 </ul>
 
