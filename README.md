@@ -14,7 +14,11 @@ This application allows users to be able to efficiently search for internships e
     <li><b>Saved Searches</b> Allows user to save search results so that they may come back to the search in the future</li>
 </ul> <br>
 
-<h3>INSTALL <br>
+<h3>REQUIREMENTS<br>
+The following project requires the following software in order to use: <br>
+	Visual Studio 2012
+    <a href="http://www.microsoft.com/en-us/download/details.aspx?id=30668">Visual Studio 2012 SDK</a>
+
 
 <h3>Getting Started <br>
 
