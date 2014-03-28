@@ -5,7 +5,7 @@
 For this project, I have only included Twitter API integration. <b>The results of the tweets shown in the application are random tweets I created on a "fake" account on twitter for testing purposes</b> I am waiting to speak with my school's Career Services to talk about posting internships in a way I can pull them onto the mobile app; my hope is to include more API's so I can pull from as many sources as I can.
 <br>
 
-<h3>Overview</h3> <br>
+<h3>Overview</h3>
 
 This application allows users to be able to efficiently search for internships either by a manual search or filter search by field of interest (major) or location interested in interning at. The main application page includes the following features:
 <ul>
