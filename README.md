@@ -20,9 +20,10 @@ For all other information, see the folder "InternshipApp" above to view project 
 <h3>REQUIREMENTS </h3>
 The following project requires the following software in order to use: <br>
 <ul>
-	<li>Visual Studio 2012
-    <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30668">Visual Studio 2012 SDK</a>
-    <li><a href="http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx">Windows Software Development Kit (SDK) for Windows 8.1</a>
+	<li>Visual Studio 2012</li>
+    <li>Windows 8.1</li>
+    <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30668">Visual Studio 2012 SDK</a></li>
+    <li><a href="http://msdn.microsoft.com/en-us/windows/desktop/bg162891.aspx">Windows Software Development Kit (SDK) for Windows 8.1</a></li>
 </ul>
 
 
