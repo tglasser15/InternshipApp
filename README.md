@@ -1,4 +1,4 @@
-<h2>Internship Mobile App
+<h2>Internship Mobile App <br>
 This app is for 
 
 
