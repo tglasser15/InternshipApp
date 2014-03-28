@@ -14,4 +14,8 @@ This application allows users to be able to efficiently search for internships e
     <li><b>Saved Searches</b> Allows user to save search results so that they may come back to the search in the future</li>
 </ul> <br>
 
+<h3>INSTALL <br>
 
+<h3>Getting Started <br>
+
+https://www.flickr.com/photos/tglasser15/sets/72157643076449664/
