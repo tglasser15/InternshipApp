@@ -13,7 +13,7 @@ This application allows users to be able to efficiently search for internships e
     <li><b>Bookmarks</b> Allows user to view bookmarked internships</li>
     <li><b>Saved Searches</b> Allows user to save search results so that they may come back to the search in the future</li>
 </ul> <br>
-To see a gallery of screenshots and their descriptions, please click on the following link: <a href="https://www.flickr.com/photos/tglasser15/sets/72157643076449664/>Internship App PhotoStream</a>
+To see a gallery of screenshots and their descriptions, please click on the following link: <a href="https://www.flickr.com/photos/tglasser15/sets/72157643076449664/">Internship App Photostream</a>
 
 <h3>REQUIREMENTS </h3><br>
 The following project requires the following software in order to use: <br>
@@ -26,4 +26,4 @@ The following project requires the following software in order to use: <br>
 
 <h3>Getting Started <br>
 
-
+https://www.flickr.com/photos/tglasser15/sets/72157643076449664/
