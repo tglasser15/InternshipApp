@@ -16,9 +16,10 @@ This application allows users to be able to efficiently search for internships e
 
 <h3>REQUIREMENTS </h3><br>
 The following project requires the following software in order to use: <br>
-	Visual Studio 2012
-    <a href="http://www.microsoft.com/en-us/download/details.aspx?id=30668">Visual Studio 2012 SDK</a>
-
+<ul>
+	<li>Visual Studio 2012
+    <li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=30668">Visual Studio 2012 SDK</a>
+</ul>
 
 <h3>Getting Started <br>
 
