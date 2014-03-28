@@ -13,7 +13,9 @@ This application allows users to be able to efficiently search for internships e
     <li><b>Bookmarks</b> Allows user to view bookmarked internships</li>
     <li><b>Saved Searches</b> Allows user to save search results so that they may come back to the search in the future</li>
 </ul> <br>
-To see a gallery of screenshots and their descriptions, please click on the following link: <br> <a href="https://www.flickr.com/photos/tglasser15/sets/72157643076449664/">Internship App Photostream</a>
+To see a gallery of screenshots and their descriptions, please click on the following link: <br> <a href="https://www.flickr.com/photos/tglasser15/sets/72157643076449664/">Internship App Photostream</a><br>
+<br> 
+For all other information, see the folder "InternshipApp" above to view project code and screenshots.
 
 <h3>REQUIREMENTS </h3><br>
 The following project requires the following software in order to use: <br>
@@ -27,6 +29,7 @@ The following project requires the following software in order to use: <br>
 <h3>Getting Started</h3> <br>
 <ul>
 <li> Install Visual Studio 2012 and SDK components listed above</li>
+<li><b>Download the .zip file</b> This folder contains the project.</li>
 <li><b>Retrieve API Keys</b> from <a href="https://dev.twitter.com/">Twitter Development</a> - you must create your own application to retrieve the keys needed for the following snippet of code:
 <pre>
         //register application on https://dev.twitter.com/ to retrieve API keys below
