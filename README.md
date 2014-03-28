@@ -12,6 +12,6 @@ This application allows users to be able to efficiently search for internships e
 	<li><b>Search for internships</b> - allows user to search for internships using several filtering criteria based on field of interest or location. Recent internships will also be updated and be readied to viewed.</li>
     <li><b>Bookmarks</b> Allows user to view bookmarked internships</li>
     <li><b>Saved Searches</b> Allows user to save search results so that they may come back to the search in the future</li>
-</ul>
+</ul> <br>
 
 
