@@ -1,0 +1,23 @@
+﻿<xapCache source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Bin\Debug\InternshipApp_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="3/28/2014 12:39:33 AM">
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\obj\Debug\InternshipApp.dll" archivePath="InternshipApp.dll" lastWriteTime="3/28/2014 12:39:32 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Add.png" archivePath="Toolkit.Content\ApplicationBar.Add.png" lastWriteTime="3/26/2014 5:06:34 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="3/26/2014 5:06:34 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="3/26/2014 5:06:34 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="3/26/2014 5:06:34 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="3/26/2014 5:06:34 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="3/28/2014 12:39:33 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="3/26/2014 3:38:04 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\Hammock.WindowsPhone.dll" archivePath="Hammock.WindowsPhone.dll" lastWriteTime="3/25/2014 11:27:01 PM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\ICSharpCode.SharpZipLib.WindowsPhone.dll" archivePath="ICSharpCode.SharpZipLib.WindowsPhone.dll" lastWriteTime="3/25/2014 11:27:01 PM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="3/26/2014 5:06:34 AM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="3/25/2014 11:27:01 PM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\TweetSharp.WindowsPhone.dll" archivePath="TweetSharp.WindowsPhone.dll" lastWriteTime="3/25/2014 11:27:02 PM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="3/25/2014 11:27:01 PM" />
+  <file source="C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="3/28/2014 12:39:33 AM" />
+</xapCache>
