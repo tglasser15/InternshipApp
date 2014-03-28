@@ -17,7 +17,7 @@ To see a gallery of screenshots and their descriptions, please click on the foll
 <br> 
 For all other information, see the folder "InternshipApp" above to view project code and screenshots.
 
-<h3>REQUIREMENTS </h3><br>
+<h3>REQUIREMENTS </h3>
 The following project requires the following software in order to use: <br>
 <ul>
 	<li>Visual Studio 2012
