@@ -24,7 +24,7 @@ The following project requires the following software in order to use: <br>
 </ul>
 
 
-<h3>Getting Started <br>
+<h3>Getting Started</h3> <br>
 <ul>
 <li> Install Visual Studio 2012 and SDK components listed above</li>
 <li><br>Retrieve API Keys</br>
