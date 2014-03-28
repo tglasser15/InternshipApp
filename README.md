@@ -9,9 +9,9 @@ For this project, I have only included Twitter API integration. <b>The results o
 
 This application allows users to be able to efficiently search for internships either by a manual search or filter search by field of interest (major) or location interested in interning at. The main application page includes the following features:
 <ul>
-	<li><b>Search for internships</b> - allows user to search for internships using several filtering criteria. Recent internships posted by Career Services</li>
-    <li><b>Bookmarks</b></li>
-    <li><b>Saved Searches</b></li>
+	<li><b>Search for internships</b> - allows user to search for internships using several filtering criteria based on field of interest or location. Recent internships will also be updated and be readied to viewed.</li>
+    <li><b>Bookmarks</b> Allows user to view bookmarked internships</li>
+    <li><b>Saved Searches</b> Allows user to save search results so that they may come back to the search in the future</li>
 </ul>
 
 
