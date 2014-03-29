@@ -71,7 +71,7 @@ The following project requires the following software in order to use: <br>
         private string AccessToken = "Enter Access Token Here";
         private string AccessToken_secret = "Enter Access Token Secret Here";
 </pre>
-<li><b>Run the simulator</b>- You should have access to all the features of the app, besides the pages that are "in progress."</li>
+<li><b>Rebuild the solution and Run the simulator</b>- You should have access to all the features of the app, besides the pages that are "in progress."</li>
 </ul>
 
 <h3>Example</h3>
