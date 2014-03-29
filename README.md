@@ -105,6 +105,5 @@ The following is the result:
             //internship_information = 
             //	computer science internship
             //  #WhitworthInternships
-...
-        }
+...}
 </pre>
