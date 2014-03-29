@@ -90,5 +90,11 @@ void SearchResults_Loaded(object sender, RoutedEventArgs e)
 </pre>
 and ready to be accessed:
 <pre>
-
+private void internshipButton(object sender, RoutedEventArgs e)
+        {
+            result_pressed = true; //a button in the results page has been pressed
+            SearchPage.set_button_false(); //set buttons used in the search page to false
+            internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
+            NavigationService.Navigate(new Uri("/Individual.xaml", UriKind.Relative)); //navigate to information on individual internships
+        }
 </pre>
