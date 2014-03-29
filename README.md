@@ -81,7 +81,7 @@ Let's say I wanted to look for an internship about "computer science". When I en
                     if (SearchBar.Text != defaultSearch)
                         results = results.Where(o => o.Text.ToUpper().Contains(SearchBar.Text)).ToArray();
 </pre>
-From the API integration snippet above, results is initialized with the tweets. results will only be set equal to the tweets that are associated with "computer science". The listbox in the results page is then initialized...
+From the API integration snippet above, the variable results is initialized with the tweets. results will only be set equal to the tweets that are associated with "computer science". The listbox in the results page is then initialized...
 <pre>
 void SearchResults_Loaded(object sender, RoutedEventArgs e)
         {
