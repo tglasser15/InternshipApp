@@ -88,7 +88,7 @@ void SearchResults_Loaded(object sender, RoutedEventArgs e)
             tweetList.ItemsSource = results; //set listbox to items in result
         }
 </pre>
-and ready to be accessed:
+and ready to be accessed for information:
 <pre>
 private void internshipButton(object sender, RoutedEventArgs e)
         {
