@@ -21,7 +21,7 @@ void SearchPage_Loaded(object sender, RoutedEventArgs e)
                     if (rep.StatusCode == HttpStatusCode.OK)
                     {
                         //bind
-                        //tweetList.ItemsSource is the listbox that tweets will be 							set to as it updates
+                        //tweetList.ItemsSource is the listbox that tweets will be 							//set to as it updates
                         this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts; });
                         results = ts; //set twitter feeds to holder since ts is a local variable
                     }
