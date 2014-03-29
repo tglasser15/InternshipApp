@@ -35,6 +35,7 @@ void SearchPage_Loaded(object sender, RoutedEventArgs e)
 
         }
 </pre>
+An example of how I am using this is given below.
 
 <h3>Overview</h3>
 
@@ -72,4 +73,6 @@ The following project requires the following software in order to use: <br>
 </pre>
 <li><b>Run the simulator</b>- You should have access to all the features of the app, besides the pages that are "in progress."</li>
 </ul>
+
+<h3>Examples</h3>
 
