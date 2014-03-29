@@ -100,7 +100,7 @@ private void internshipButton(object sender, RoutedEventArgs e)
 </pre>
 The following is the result:
 <pre>
-...
+{...
             internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
             //internship_information = 
             //	computer science internship
