@@ -63,7 +63,7 @@ The following project requires the following software in order to use: <br>
 <ul>
 <li> Install Visual Studio 2012 and SDK components listed above</li>
 <li><b>Download the .zip file</b> - This folder contains the project.</li>
-<li><b>Retrieve API Keys</b> from <a href="https://dev.twitter.com/">Twitter Development</a> - For security purposes and in an effort to prevent abuse from publicly showing my secret keys, you must create your own application and import your own keys needed for the following snippet of code in SearchPage.xaml.cs:
+<li><b>Retrieve API Keys</b> from <a href="https://dev.twitter.com/">Twitter Development</a> - For security purposes and in an effort to prevent abuse from publicly showing my secret keys, you must create your own application and import your own keys needed for the following snippet of code in <a href="https://github.com/tglasser15/InternshipApp/blob/master/InternshipApp/InternshipApp/SearchPage.xaml.cs">SearchPage.xaml.cs</a>:
 <pre>
         //register application on https://dev.twitter.com/ to retrieve API keys below
         private string API_key = "Enter API Key Here";
