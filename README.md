@@ -35,7 +35,7 @@ void SearchPage_Loaded(object sender, RoutedEventArgs e)
 
         }
 </pre>
-An example of how I am using this is given below.
+An example of how I am using this is given <a href="#example">below</a>.
 
 <h3>Overview</h3>
 
@@ -74,7 +74,7 @@ The following project requires the following software in order to use: <br>
 <li><b>Rebuild the solution and Run the simulator</b>- You should have access to all the features of the app, besides the pages that are "in progress."</li>
 </ul>
 
-<h3>Example</h3>
+<h3><a id="example">Example</a></h3>
 Let's say I wanted to look for an internship about "computer science". When I enter this into the search bar text field, the textfield SearchBar.Text will be initialized with "computer science". Once the space bar is pressed, I arrive at the following snipper of code:
 <pre>
 //filter results based on what is typed in the search bar
