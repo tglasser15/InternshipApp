@@ -74,5 +74,21 @@ The following project requires the following software in order to use: <br>
 <li><b>Run the simulator</b>- You should have access to all the features of the app, besides the pages that are "in progress."</li>
 </ul>
 
-<h3>Examples</h3>
+<h3>Example</h3>
+Let's say I wanted to look for an internship about "computer science". When I enter this into the search bar text field, the textfield SearchBar.Text will be initialized with "computer science". Once the space bar is pressed, I arrive at the following snipper of code:
+<pre>
+//filter results based on what is typed in the search bar
+                    if (SearchBar.Text != defaultSearch)
+                        results = results.Where(o => o.Text.ToUpper().Contains(SearchBar.Text)).ToArray();
+</pre>
+From the API integration snippet above, results is initialized with the tweets. results will only be set equal to the tweets that are associated with "computer science". The listbox in the results page is then initialized...
+<pre>
+void SearchResults_Loaded(object sender, RoutedEventArgs e)
+        {
+            tweetList.ItemsSource = results; //set listbox to items in result
+        }
+</pre>
+and ready to be accessed:
+<pre>
 
+</pre>
