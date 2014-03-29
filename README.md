@@ -15,7 +15,7 @@ This application allows users to be able to efficiently search for internships e
 </ul> <br>
 To see a gallery of screenshots and their descriptions, please click on the following link: <br> <a href="https://www.flickr.com/photos/tglasser15/sets/72157643076449664/">Internship App Photostream</a><br>
 <br> 
-For all other information, see the folder "InternshipApp" above to view project code and screenshots.
+For all other information, see the folder <a href="https://github.com/tglasser15/InternshipApp/tree/master/InternshipApp">InternshipApp</a>.
 
 <h3>REQUIREMENTS </h3>
 The following project requires the following software in order to use: <br>
