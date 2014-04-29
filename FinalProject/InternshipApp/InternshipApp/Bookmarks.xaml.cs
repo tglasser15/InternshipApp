@@ -10,7 +10,7 @@ using Microsoft.Phone.Shell;
 
 namespace InternshipApp
 {
-    public partial class Bookmarks : PhoneApplicationPage
+    public partial class Bookmarks : PhoneApplicationPage //hello
     {
         public Bookmarks()
         {
