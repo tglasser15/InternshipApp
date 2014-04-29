@@ -1,0 +1,85 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="InternshipApp.SearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBox Name="SearchBar" Text="Search Here" TextAlignment="Center" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Height="74"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+
+            <Grid.Resources>
+                <DataTemplate x:Key="tweetlist">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="{Binding Text}" Height="50" Width="50" Grid.Row="0" Grid.Column="0" 
+                         VerticalAlignment="Top" Margin="0,7,7,0"
+                       Grid.RowSpan="2" Click="internshipButton">
+
+                        </Button>
+                        <!--<TextBlock Text="{Binding CreatedDate}" Grid.Row="0" Grid.Column="1"
+                                 Foreground="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top"/>-->
+
+                        <TextBlock Text="{Binding}" Tap="item_Tapped" TextWrapping="Wrap" Foreground="CornflowerBlue"
+                               Grid.Row="1" Grid.Column="1"
+                               VerticalAlignment="Top"
+                               />
+
+                    </Grid>
+                </DataTemplate>
+            </Grid.Resources>
+            <TextBlock HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" Text="Filter Search By :" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Height="35" Margin="22,63,0,0" TextWrapping="Wrap" Text="Category: " VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Height="35" Margin="22,145,0,0" TextWrapping="Wrap" Text="Location:" VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2"/>
+            <Button Name="buttonSearch" Content="Search" HorizontalAlignment="Left" Margin="40,194,0,0" VerticalAlignment="Top" Width="183" Height="71" Click="buttonSearch_Click"/>
+            <TextBox Name="LocationSearch" Background="White" GotFocus="LocationBar_GotFocus" LostFocus="LocationBar_LostFocus" HorizontalAlignment="Left" Height="74" Margin="100,120,0,0" TextWrapping="Wrap" Text="Enter Location" VerticalAlignment="Top" Width="356"/>
+            <TextBlock TextDecorations="Underline" FontSize="30" HorizontalAlignment="Left" TextAlignment="Center" Margin="10,289,0,0" TextWrapping="Wrap" Text="Recent Internships" VerticalAlignment="Top" Width="436"/>
+            <Button x:Name="buttonSeeAll" Content="See All" HorizontalAlignment="Left" Margin="244,194,0,0" VerticalAlignment="Top" Width="183" Height="71" Click="buttonSeeAll_click"/>
+            <ListBox                
+                             Margin="0,334,0,10"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ItemTemplate="{StaticResource tweetlist}"
+                             x:Name="tweetList">
+            </ListBox>
+            <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="187,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible"/>
+            <toolkit:ListPicker Background="White" Foreground="Black" x:Name="OptionSelector" Margin="112,46,10,384">
+                <toolkit:ListPickerItem x:Name="Option1" Content="Please select a field..."  />
+                <toolkit:ListPickerItem x:Name="Option2" Content="Computer Science"/>
+                <toolkit:ListPickerItem x:Name="Option3" Content="Math" />
+                <toolkit:ListPickerItem x:Name="Option4" Content="Sociology" />
+            </toolkit:ListPicker>
+
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
