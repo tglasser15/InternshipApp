@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Parse;
 
 namespace InternshipApp
 {
@@ -20,6 +21,8 @@ namespace InternshipApp
         //create a navigation for each of the button clicks
         private void buttonLogout_Click(object sender, RoutedEventArgs e)
         {
+            ParseUser.LogOut();
+            var currentUser = ParseUser.CurrentUser; //current user will be null
             NavigationService.GoBack(); //navigates back to main screen
         }
 

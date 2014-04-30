@@ -212,6 +212,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4-wp\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Parse">
+      <HintPath>..\packages\parse.1.2.14\lib\wp8\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.Phone">
+      <HintPath>..\packages\parse.1.2.14\lib\wp8\Parse.Phone.dll</HintPath>
+    </Reference>
     <Reference Include="TweetSharp.WindowsPhone, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TweetSharp.2.3.1\lib\sl4-wp\TweetSharp.WindowsPhone.dll</HintPath>

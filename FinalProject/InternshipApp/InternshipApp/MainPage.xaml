@@ -53,7 +53,8 @@
             <PasswordBox Name="passwordBox" HorizontalAlignment="Left" MaxLength="20" GotFocus="passwordBox_GotFocus" LostFocus="passwordBox_LostFocus" Margin="76,253,0,0" VerticalAlignment="Top" Width="308" Height="78"/>
             <TextBlock Name="textBlockError" Foreground="red" Visibility="Collapsed" HorizontalAlignment="Left" Margin="86,336,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="298"/>
             <Button Content="Login" HorizontalAlignment="Left" Margin="168,401,0,0" VerticalAlignment="Top" Click="buttonLogin"/>
-
+            <Button Content="Signup" Click="SignUp_Click" HorizontalAlignment="Left" Margin="160,460,0,0" VerticalAlignment="Top"/>
+            
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are

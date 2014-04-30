@@ -7,6 +7,9 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using InternshipApp.Resources;
+using Parse;
+
+
 
 namespace InternshipApp
 {
@@ -23,6 +26,8 @@ namespace InternshipApp
         /// </summary>
         public App()
         {
+
+
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
@@ -55,14 +60,33 @@ namespace InternshipApp
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            //parse setup
+            this.InitializeComponent();
+            //this.Suspending += OnSuspending;
+
+            ParseClient.Initialize("rKqdh2yVHXOGcH1sQN6pjQwN5iHpgyXiFjsw0VFD", "VM2fmpcneW1CVnD8avgDXOE5SPAvn7cghKnedajM");
+
         }
 
         // Code to execute when the application is launching (eg, from Start)
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            //Calling parse test
+            //ParseTest();
+        
         }
+        //test parse
+        // public async tasktest() 
 
+        /*
+        public async void ParseTest()
+        {
+            var testObject = new ParseObject("TestObject");
+            testObject["foo"] = "bar";
+            await testObject.SaveAsync();
+        } */
+        
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)

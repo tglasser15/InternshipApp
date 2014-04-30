@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using InternshipApp.Resources;
 using System.Text.RegularExpressions;
+using Parse;
 
 namespace InternshipApp
 {
@@ -19,17 +20,55 @@ namespace InternshipApp
         {
             InitializeComponent();
 
+            //check if user is already logged on
+            if (ParseUser.CurrentUser != null)
+            {
+                NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
+            }
+
+            
+
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
 
-        private void buttonLogin(object sender, RoutedEventArgs e)
+        //private void buttonLogin(object sender, RoutedEventArgs e)
+        
+        public async void buttonLogin(object sender, RoutedEventArgs e)
         {
             //if (textEmail.Text == "" || passwordBox.Password == "")
             //    checkFields();
             //else
+
+            try {
+                await ParseUser.LogInAsync("myname", "mypass");
+                //login successful
+                NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
+            }
+            catch (Exception ex)
+            {
+                //login failed
+            }
+
+
+           
+        }
+
+        public async void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            var user = new ParseUser()
+            {
+                Username = "my name",
+                Password = "my pass",
+                Email = "my name"
+            };
+
+            await user.SignUpAsync();
+
+            //go to next page
             NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
         }
+
 
         private void checkFields()
         {
@@ -83,5 +122,7 @@ namespace InternshipApp
             textBlockError.Text = "";
             textBlockError.Visibility = Visibility.Collapsed;
         }
+
+       
     }
 }

@@ -5,6 +5,8 @@
     <AssemblyPart x:Name="ICSharpCode.SharpZipLib.WindowsPhone" Source="ICSharpCode.SharpZipLib.WindowsPhone.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
+    <AssemblyPart x:Name="Parse" Source="Parse.dll" />
+    <AssemblyPart x:Name="Parse.Phone" Source="Parse.Phone.dll" />
     <AssemblyPart x:Name="TweetSharp.WindowsPhone" Source="TweetSharp.WindowsPhone.dll" />
   </Deployment.Parts>
 </Deployment>
