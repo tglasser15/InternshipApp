@@ -45,11 +45,12 @@ namespace InternshipApp
                 //login successful
                 NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
             }
+                
             catch (Exception ex)
             {
                 //login failed
             }
-
+            
 
            
         }
@@ -58,9 +59,9 @@ namespace InternshipApp
         {
             var user = new ParseUser()
             {
-                Username = "my name",
-                Password = "my pass",
-                Email = "my name"
+                Username = textEmail.Text,
+                Password = passwordBox.DataContext.ToString(),
+                Email = textEmail.Text
             };
 
             await user.SignUpAsync();
