@@ -39,6 +39,8 @@ namespace InternshipApp
             //if (textEmail.Text == "" || passwordBox.Password == "")
             //    checkFields();
             //else
+            string myname = textEmail.Text;
+            string mypass = passwordBox.DataContext.ToString();
 
             try {
                 await ParseUser.LogInAsync("myname", "mypass");
@@ -49,6 +51,7 @@ namespace InternshipApp
             catch (Exception ex)
             {
                 //login failed
+                textBlockError.Visibility = Visibility.Visible;
             }
             
 
@@ -57,17 +60,28 @@ namespace InternshipApp
 
         public async void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            var user = new ParseUser()
+            try
             {
-                Username = textEmail.Text,
-                Password = passwordBox.DataContext.ToString(),
-                Email = textEmail.Text
-            };
+                var user = new ParseUser()
+                {
+                    Username = textEmail.Text,
+                    Password = passwordBox.DataContext.ToString(),
+                    Email = textEmail.Text
+                    
+                };
 
-            await user.SignUpAsync();
+                await user.SignUpAsync();
 
-            //go to next page
-            NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
+                //go to next page
+               // NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
+            }
+
+            catch (Exception ex)
+            {
+                //failed signup
+                Console.WriteLine(ex.Message);
+                //textBlockError.Visibility = Visibility.Visible;
+            }
         }
 
 
