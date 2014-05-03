@@ -20,7 +20,7 @@ namespace InternshipApp
     //TS = part of tweetsharp library
     public partial class SearchResults : PhoneApplicationPage
     {
-        
+
         //IEnumerable<TweetSharp.TwitterStatus> results; //ienumerable holder 
         static List<string> results;
         static string internship_information; //string holder for internship information

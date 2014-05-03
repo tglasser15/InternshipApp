@@ -69,10 +69,11 @@
                              Margin="0,334,0,10"
                              ScrollViewer.VerticalScrollBarVisibility="Visible"
                              ItemTemplate="{StaticResource tweetlist}"
-                             x:Name="tweetList">
+                             x:Name="tweetList"
+                            >
             </ListBox>
             <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="187,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible"/>
-            <toolkit:ListPicker Background="White" Foreground="Black" x:Name="OptionSelector" Margin="112,46,10,384">
+            <toolkit:ListPicker Background="White" Foreground="Black" x:Name="OptionSelector" Margin="112,46,10,243">
                 <toolkit:ListPickerItem x:Name="Option1" Content="Please select a field..."  />
                 <toolkit:ListPickerItem x:Name="Option2" Content="Computer Science"/>
                 <toolkit:ListPickerItem x:Name="Option3" Content="Math" />
@@ -81,5 +82,15 @@
 
         </Grid>
     </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="True" IsVisible="True">
+
+            <shell:ApplicationBarIconButton Click="Search_Click" IconUri="searchicon.jpg" Text="search" />
+            <shell:ApplicationBarIconButton Click="Bookmarks_Click" IconUri="saveicon.jpg" Text="bookmars"/>
+            <shell:ApplicationBarIconButton Click="SavedSearches_Click" IconUri="saveicon.jpg" Text="savedsearches"/>
+
+
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

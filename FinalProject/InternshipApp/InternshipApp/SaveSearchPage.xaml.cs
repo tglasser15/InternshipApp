@@ -16,5 +16,20 @@ namespace InternshipApp
         {
             InitializeComponent();
         }
+
+        private void Search_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+        }
+
+        private void Bookmarks_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Bookmarks.xaml", UriKind.Relative));
+        }
+
+        private void SavedSearches_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
+        }
     }
 }

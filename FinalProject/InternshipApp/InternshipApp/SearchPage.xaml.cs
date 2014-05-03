@@ -21,8 +21,9 @@ namespace InternshipApp
     //TS = part of TweetSharp Library - took code from example of online open source
     public partial class SearchPage : PhoneApplicationPage
     {
-        //static IEnumerable<TweetSharp.TwitterStatus> results; //create ienumberable of results to match twitter feed type
-        static List<string> results = new List<string>();
+        static IEnumerable<TweetSharp.TwitterStatus> results2; //create ienumberable of results to match twitter feed type
+        static List<string> results = new List<string>() { "computer science", "math", "biology" };
+        static List<string> temp = new List<string>() { "computer science in Spokane, Washington paid", "math in San Jose Cali not paid", "biology research in Conneticut, residency provided" };
         static string internship_information; //string holder for internship information
 
         //register application on https://dev.twitter.com/ to retrieve API keys below
@@ -36,12 +37,12 @@ namespace InternshipApp
         private string defaultSearch = "Search Here";
         private string defaultLocation = "Enter Location";
         private string defaultField = "Please select a field...";
-        
+
         public SearchPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchPage_Loaded); //TS
-            
+
         }
 
         //set textboxes based on whether or not they have been clicked
@@ -70,7 +71,7 @@ namespace InternshipApp
         //TS
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-
+            results = temp;
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 //validate API keys
@@ -78,22 +79,26 @@ namespace InternshipApp
                 service.AuthenticateWith(AccessToken, AccessToken_secret);
 
                 //ScreenName is the profile name of the twitter user.
-                service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "Internship_DNF" }, (ts, rep) => //ts = twitter feeds
+                try
                 {
-                    if (rep.StatusCode == HttpStatusCode.OK)
+                    service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "Internship_DNF" }, (ts, rep) => //ts = twitter feeds
                     {
-                        //bind
-                        this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts; });
-                       // results = ts; //set twitter feeds to holder since ts is a local variable
-                        
-                    }
-                });
+                        if (rep.StatusCode == HttpStatusCode.OK)
+                        {
+                            //bind
+                            this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts; });
+                            //results2 = ts; //set twitter feeds to holder since ts is a local variable
 
-                results.Add("computer science");
-                results.Add("math");
-                results.Add("biology");
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
                 tweetList.ItemsSource = results;
-                
+
             }
             else
             {
@@ -103,7 +108,7 @@ namespace InternshipApp
 
         }
 
-        
+
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
             //set text fields to upper - will be used later to filter results
@@ -111,7 +116,7 @@ namespace InternshipApp
             LocationSearch.Text = LocationSearch.Text.ToUpper();
             string field = ((ListPickerItem)OptionSelector.SelectedItem).Content.ToString();
             field = field.ToUpper();
-            
+
             //if there are no results, allow for tweets to load
             if (results == null)
             {
@@ -121,28 +126,53 @@ namespace InternshipApp
             else
             {
                 //if text edit fields are in their default texts, report invalid search
-                if ((SearchBar.Text == defaultSearch || SearchBar.Text == defaultSearch.ToUpper()) && (field == defaultField || field == defaultField.ToUpper()) && (LocationSearch.Text == defaultLocation ||                              LocationSearch.Text == defaultLocation.ToUpper()))
+                if ((SearchBar.Text == defaultSearch || SearchBar.Text == defaultSearch.ToUpper()) && (field == defaultField || field == defaultField.ToUpper()) && (LocationSearch.Text == defaultLocation || LocationSearch.Text == defaultLocation.ToUpper()))
                 {
-                    
+
                     errorSearch.Text = "Invalid search requests";
                     errorSearch.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     //search GOOGLE API for city search
+                    string[] keys = 
+                    {
+                        SearchBar.Text,field,LocationSearch.Text
+                    };
+                    List<string> queue = new List<string>();
+                    //string[] words;
+                    //char[] delimiterChars = { ' '  };
+                    //foreach (string s in keys)
+                    //{
+                    //    words = s.Split(delimiterChars);
+                    //}
 
+                    int index = -1;
                     //filter results based on what is typed in the search bar
-                    if (SearchBar.Text != defaultSearch)
-                        //results = results.Where(o => o.Text.ToUpper().Contains(SearchBar.Text)).ToArray(); 
-                        results = results.Where(o => o.ToUpper().Contains(SearchBar.Text)).ToList();
+                    if (SearchBar.Text != defaultSearch || field != defaultField || LocationSearch.Text != defaultLocation)
+                    //results = results.Where(o => o.Text.ToUpper().Contains(SearchBar.Text)).ToArray(); 
+                    //results = results.Where(o => o.ToUpper().Contains(SearchBar.Text)).ToList();
+                    {
+                        foreach (string s in results)
+                        {
+                            index++;
+                            foreach (string k in keys)
+                            {
+                                if (Regex.IsMatch(s, k, RegexOptions.IgnoreCase))
+                                    queue.Add(s);
+                            }
+                        }
+                    }
+
+                    results = queue.Distinct().ToList();
+
 
                     NavigationService.Navigate(new Uri("/SearchResults.xaml", UriKind.Relative)); //navigate to search results page
-                    // mypage.xaml?param1=test
                 }
             }
 
         }
-        
+
         //retrieves filtered results
         //public static IEnumerable<TweetSharp.TwitterStatus> send_results()
         //{
@@ -157,8 +187,9 @@ namespace InternshipApp
         //if an item in the listbox is pressed..
         private void internshipButton(object sender, RoutedEventArgs e)
         {
-            //internship_information = (sender as Button).Content.ToString(); //retrieve content of item on listbox
-            //NavigationService.Navigate(new Uri("/Individual.xaml", UriKind.Relative)); //navigate to information on individual internships
+
+            internship_information = (sender as Button).Content.ToString(); //retrieve content of item on listbox
+            NavigationService.Navigate(new Uri("/Individual.xaml?param=RecentInternships", UriKind.Relative)); //navigate to information on individual internships
         }
 
         private void item_Tapped(object sender, RoutedEventArgs e)
@@ -183,6 +214,21 @@ namespace InternshipApp
         public static string send_internshipInformation()
         {
             return internship_information;
+        }
+
+        private void Search_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+        }
+
+        private void Bookmarks_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Bookmarks.xaml", UriKind.Relative));
+        }
+
+        private void SavedSearches_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
 
     }

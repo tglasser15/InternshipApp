@@ -15,7 +15,8 @@ namespace InternshipApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
+        bool invalidEmail;
+        bool invalidField;
         public MainPage()
         {
             InitializeComponent();
@@ -23,64 +24,83 @@ namespace InternshipApp
             //check if user is already logged on
             if (ParseUser.CurrentUser != null)
             {
-                NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
             }
 
-            
+            invalidEmail = false;
+            invalidField = false;
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
 
         //private void buttonLogin(object sender, RoutedEventArgs e)
-        
+
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
-            //if (textEmail.Text == "" || passwordBox.Password == "")
-            //    checkFields();
-            //else
-            string myname = textEmail.Text;
-            string mypass = passwordBox.DataContext.ToString();
-
-            try {
-                await ParseUser.LogInAsync("myname", "mypass");
-                //login successful
-                NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
-            }
-                
-            catch (Exception ex)
+            checkFields();
+            if (invalidField == false)
             {
-                //login failed
-                textBlockError.Visibility = Visibility.Visible;
-            }
-            
+                string myname = textEmail.Text;
+                string mypass = passwordBox.Password;
 
-           
+
+                try
+                {
+                    await ParseUser.LogInAsync(myname, mypass);
+                    //login successful
+                    NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+                }
+
+                catch (Exception ex)
+                {
+                    checkValidEmail(myname);
+                    //login failed
+                    textBlockError.Visibility = Visibility.Visible;
+                    if (invalidEmail == true)
+                        textBlockError.Text = "Account does not exist.";
+                    else
+                        textBlockError.Text = "Failed to login";
+
+
+                }
+            }
+
+        }
+
+        public async void checkValidEmail(string myname)
+        {
+            var checkEmail = await(from user in ParseUser.Query where user.Get<string>("username") == myname select user).FindAsync();
+            if (!checkEmail.Any())
+                invalidEmail = true;
+
         }
 
         public async void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            try
+            checkFields();
+            if (invalidField == false)
             {
-                var user = new ParseUser()
+                try
                 {
-                    Username = textEmail.Text,
-                    Password = passwordBox.DataContext.ToString(),
-                    Email = textEmail.Text
-                    
-                };
+                    var user = new ParseUser()
+                    {
+                        Username = textEmail.Text,
+                        Password = passwordBox.Password,
+                        Email = textEmail.Text
+                    };
 
-                await user.SignUpAsync();
+                    await user.SignUpAsync();
 
-                //go to next page
-               // NavigationService.Navigate(new Uri("/AppMainPage.xaml", UriKind.Relative));
-            }
+                }
 
-            catch (Exception ex)
-            {
-                //failed signup
-                Console.WriteLine(ex.Message);
-                //textBlockError.Visibility = Visibility.Visible;
+                catch (Exception ex)
+                {
+                    textBlockError.Visibility = Visibility.Visible;
+                    textBlockError.Text = "Failed to sign up.";
+                }
+
+                NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
             }
         }
 
@@ -89,31 +109,39 @@ namespace InternshipApp
         {
             if (textEmail.Text != "")
             {
+                invalidField = false;
                 if (ValidateEmail(textEmail.Text))
                 {
+                    invalidField = false;
                     if (passwordBox.Password != "")
                     {
+                        invalidField = false;
                         if (passwordBox.Password.Length >= passwordBox.MaxLength)
                         {
+                            invalidField = true;
                             textBlockError.Text = "Password can't be more than 20 characters long";
-                            //passwordBox.BorderBrush = red;
                             textBlockError.Visibility = Visibility.Visible;
                         }
+                        else
+                            invalidField = false;
                     }
                     else
                     {
+                        invalidField = true;
                         textBlockError.Text = "Password cannot be empty";
                         textBlockError.Visibility = Visibility.Visible;
                     }
                 }
                 else
                 {
+                    invalidField = true;
                     textBlockError.Text = "Invalid Email address";
                     textBlockError.Visibility = Visibility.Visible;
                 }
             }
             else
             {
+                invalidField = true;
                 textBlockError.Text = "Email cannot be empty";
                 textBlockError.Visibility = Visibility.Visible;
             }
@@ -138,6 +166,6 @@ namespace InternshipApp
             textBlockError.Visibility = Visibility.Collapsed;
         }
 
-       
+
     }
 }
