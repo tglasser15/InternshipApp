@@ -21,7 +21,9 @@ namespace InternshipApp
     //TS = part of TweetSharp Library - took code from example of online open source
     public partial class SearchPage : PhoneApplicationPage
     {
-        static IEnumerable<TweetSharp.TwitterStatus> results; //create ienumberable of results to match twitter feed type
+        static IEnumerable<TweetSharp.TwitterStatus> results2; //create ienumberable of results to match twitter feed type
+        static List<string> results = new List<string>() { "computer science", "math", "biology" };
+        static List<string> temp = new List<string>() { "computer science in Spokane, Washington paid", "math in San Jose Cali not paid", "biology research in Conneticut, residency provided" };
         static string internship_information; //string holder for internship information
 
         //register application on https://dev.twitter.com/ to retrieve API keys below
@@ -69,7 +71,7 @@ namespace InternshipApp
         //TS
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //results = temp;
+            results = temp;
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 //validate API keys
@@ -85,7 +87,7 @@ namespace InternshipApp
                         {
                             //bind
                             this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts; });
-                            results = ts; //set twitter feeds to holder since ts is a local variable
+                            //results2 = ts; //set twitter feeds to holder since ts is a local variable
 
                         }
                     });
@@ -94,6 +96,9 @@ namespace InternshipApp
                 {
                     Console.WriteLine(ex.Message);
                 }
+
+                tweetList.ItemsSource = results;
+
             }
             else
             {
@@ -130,37 +135,37 @@ namespace InternshipApp
                 else
                 {
                     //search GOOGLE API for city search
-                    List<string> keys = new List<string>()
+                    string[] keys = 
                     {
                         SearchBar.Text,field,LocationSearch.Text
                     };
+                    List<string> queue = new List<string>();
+                    //string[] words;
+                    //char[] delimiterChars = { ' '  };
+                    //foreach (string s in keys)
+                    //{
+                    //    words = s.Split(delimiterChars);
+                    //}
 
-                    char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
-                    string[] words = SearchBar.Text.Split(delimiterChars);
-                    foreach (string s in words)
-                    {
-                        keys.Add(s);
-                    }
-
-                   // List<string> queue = new List<string>();
-                    
-                    //int index = -1;
-                    ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>();
-                    IEnumerable<TwitterStatus> temp;
+                    int index = -1;
                     //filter results based on what is typed in the search bar
                     if (SearchBar.Text != defaultSearch || field != defaultField || LocationSearch.Text != defaultLocation)
+                    //results = results.Where(o => o.Text.ToUpper().Contains(SearchBar.Text)).ToArray(); 
+                    //results = results.Where(o => o.ToUpper().Contains(SearchBar.Text)).ToList();
                     {
-                        foreach (string k in keys)
+                        foreach (string s in results)
                         {
-                            temp = results.Where(o => o.Text.ToUpper().Contains(k)).ToList();
-                            foreach (TwitterStatus ts in temp)
+                            index++;
+                            foreach (string k in keys)
                             {
-                                queue.Add(ts);
+                                if (Regex.IsMatch(s, k, RegexOptions.IgnoreCase))
+                                    queue.Add(s);
                             }
                         }
-
-                        results = queue.Distinct().ToList();
                     }
+
+                    results = queue.Distinct().ToList();
+
 
                     NavigationService.Navigate(new Uri("/SearchResults.xaml", UriKind.Relative)); //navigate to search results page
                 }
@@ -169,12 +174,15 @@ namespace InternshipApp
         }
 
         //retrieves filtered results
-        public static IEnumerable<TweetSharp.TwitterStatus> send_results()
+        //public static IEnumerable<TweetSharp.TwitterStatus> send_results()
+        //{
+        //    return results;
+        //}
+
+        public static List<string> send_results()
         {
             return results;
         }
-
-        //public static List<string> send_results()
 
         //if an item in the listbox is pressed..
         private void internshipButton(object sender, RoutedEventArgs e)
@@ -182,6 +190,12 @@ namespace InternshipApp
 
             internship_information = (sender as Button).Content.ToString(); //retrieve content of item on listbox
             NavigationService.Navigate(new Uri("/Individual.xaml?param=RecentInternships", UriKind.Relative)); //navigate to information on individual internships
+        }
+
+        private void item_Tapped(object sender, RoutedEventArgs e)
+        {
+            internship_information = (sender as TextBlock).Text;
+            NavigationService.Navigate(new Uri("/Individual.xaml?param=RecentInternships", UriKind.Relative));
         }
 
         //retrieve all internships posted
