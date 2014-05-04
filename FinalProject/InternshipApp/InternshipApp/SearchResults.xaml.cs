@@ -36,6 +36,7 @@ namespace InternshipApp
             {
                 emptyResult.Text = "No results...";
                 emptyResult.Visibility = Visibility.Visible;
+
             }
         }
 

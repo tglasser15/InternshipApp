@@ -50,7 +50,7 @@
 
             <TextBlock HorizontalAlignment="Left" Text="Password:"  Margin="10,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="30"></TextBlock>
 
-            <TextBox Name="textEmail" HorizontalAlignment="Left" Height="83" Margin="0,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" FontSize="12" FontFamily="/InternshipApp;component/Fonts/Fonts.zip#Rockwell"/>
+            <TextBox Name="textEmail" FontSize="32" HorizontalAlignment="Left" Height="83" Margin="0,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" FontFamily="/InternshipApp;component/Fonts/Fonts.zip#Rockwell"/>
 
             <PasswordBox Name="passwordBox" HorizontalAlignment="Left" MaxLength="20" GotFocus="passwordBox_GotFocus" LostFocus="passwordBox_LostFocus" Margin="0,141,0,0" VerticalAlignment="Top" Width="456" Height="83"/>
 

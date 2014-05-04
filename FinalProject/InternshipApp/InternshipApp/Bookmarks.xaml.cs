@@ -15,6 +15,13 @@ namespace InternshipApp
         public Bookmarks()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(Bookmarks_Loaded); 
+        }
+
+        void Bookmarks_Loaded(object sender, RoutedEventArgs e)
+        {
+            //savesearch.IsEnabled = false;
+            //search.IsEnabled = false;
         }
 
         private void Search_Click(object sender, EventArgs e)

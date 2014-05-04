@@ -40,7 +40,7 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchPage_Loaded); //TS
-
+            
         }
 
         //set textboxes based on whether or not they have been clicked
@@ -69,6 +69,8 @@ namespace InternshipApp
         //TS
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //savesearch.IsEnabled = false;
+            //bookmarks.IsEnabled = false;
             //results = temp;
             if (NetworkInterface.GetIsNetworkAvailable())
             {

@@ -85,9 +85,9 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="True" IsVisible="True">
 
-            <shell:ApplicationBarIconButton Click="Search_Click" IconUri="searchicon.jpg" Text="search" />
-            <shell:ApplicationBarIconButton Click="Bookmarks_Click" IconUri="saveicon.jpg" Text="bookmars"/>
-            <shell:ApplicationBarIconButton Click="SavedSearches_Click" IconUri="saveicon.jpg" Text="savedsearches"/>
+            <shell:ApplicationBarIconButton x:Name="search" IsEnabled="True" Click="Search_Click" IconUri="searchicon.jpg" Text="search" />
+            <shell:ApplicationBarIconButton x:Name="bookmarks" IsEnabled="True" Click="Bookmarks_Click" IconUri="saveicon.jpg" Text="bookmars"/>
+            <shell:ApplicationBarIconButton x:Name="savesearch" IsEnabled="True" Click="SavedSearches_Click" IconUri="saveicon.jpg" Text="savedsearches"/>
 
 
         </shell:ApplicationBar>
