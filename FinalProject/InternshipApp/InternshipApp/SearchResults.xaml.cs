@@ -21,8 +21,8 @@ namespace InternshipApp
     public partial class SearchResults : PhoneApplicationPage
     {
 
-        IEnumerable<TweetSharp.TwitterStatus> results; //ienumerable holder 
-        //static List<string> results;
+        //IEnumerable<TweetSharp.TwitterStatus> results; //ienumerable holder 
+        static List<string> results;
         static string internship_information; //string holder for internship information
 
         public SearchResults()
@@ -46,15 +46,15 @@ namespace InternshipApp
 
         private void internshipButton(object sender, RoutedEventArgs e)
         {
-            internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
-            NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative)); //navigate to information on individual internships
+            //internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
+            //NavigationService.Navigate(new Uri("/Individual.xaml", UriKind.Relative)); //navigate to information on individual internships
         }
 
-        //private void item_Tapped(object sender, RoutedEventArgs e)
-        //{
-        //    internship_information = (sender as TextBlock).Text;
-        //    NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative));
-        //}
+        private void item_Tapped(object sender, RoutedEventArgs e)
+        {
+            internship_information = (sender as TextBlock).Text;
+            NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative));
+        }
 
         //returns information on the internship
         public static string send_internshipInformation()
