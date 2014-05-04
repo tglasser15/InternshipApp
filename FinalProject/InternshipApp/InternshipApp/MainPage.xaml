@@ -14,7 +14,7 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="#4387C3">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -41,20 +41,27 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Under Maintenance - click login to continue" Foreground="Yellow" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="LogIn" TextAlignment="Center" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Welcome" TextAlignment="Center" Margin="-11,-7,20,0" Style="{StaticResource PhoneTextTitle1Style}" FontFamily="Segoe WP Light" FontSize="100" Height="155"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
-            <TextBlock Margin="206,66,0,495" TextWrapping="Wrap" Text="Email" HorizontalAlignment="Left" Width="82"/>
-            <TextBlock HorizontalAlignment="Left" Margin="187,201,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top"/>
-            <TextBox Name="textEmail" HorizontalAlignment="Left" Height="83" Margin="76,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308"/>
-            <PasswordBox Name="passwordBox" HorizontalAlignment="Left" MaxLength="20" GotFocus="passwordBox_GotFocus" LostFocus="passwordBox_LostFocus" Margin="76,253,0,0" VerticalAlignment="Top" Width="308" Height="78"/>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,10,10,-10">
+            <TextBlock Text="Email:"  Margin="10,-27,0,556" TextWrapping="Wrap" HorizontalAlignment="Left" Width="148" FontFamily="Segoe UI" FontSize="30"></TextBlock>
+
+            <TextBlock HorizontalAlignment="Left" Text="Password:"  Margin="10,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="30"></TextBlock>
+
+            <TextBox Name="textEmail" HorizontalAlignment="Left" Height="83" Margin="0,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" FontSize="12" FontFamily="/InternshipApp;component/Fonts/Fonts.zip#Rockwell"/>
+
+            <PasswordBox Name="passwordBox" HorizontalAlignment="Left" MaxLength="20" GotFocus="passwordBox_GotFocus" LostFocus="passwordBox_LostFocus" Margin="0,141,0,0" VerticalAlignment="Top" Width="456" Height="83"/>
+
             <TextBlock Name="textBlockError" Foreground="red" Visibility="Collapsed" HorizontalAlignment="Left" Margin="86,336,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="298"/>
-            <Button Content="Login" HorizontalAlignment="Left" Margin="168,401,0,0" VerticalAlignment="Top" Click="buttonLogin"/>
-            <Button Content="Signup" Click="SignUp_Click" HorizontalAlignment="Left" Margin="160,460,0,0" VerticalAlignment="Top"/>
-            
+
+            <Button Content="Login" HorizontalAlignment="Left" Margin="0,272,0,0" VerticalAlignment="Top" Click="buttonLogin" Height="142" Width="446" Background="White" Foreground="#FF4387C1" FontSize="50" FontFamily="Segoe WP Light"/>
+
+            <TextBlock Text="Need an account?" HorizontalAlignment="Center" Margin="226,457,49,80" FontFamily="Segoe WP Light" FontSize="24" />
+
+            <Button Content="Sign Up" Click="SignUp_Click" HorizontalAlignment="Left" Margin="244,463,0,0" VerticalAlignment="Top" BorderBrush="Transparent" RenderTransformOrigin="-0.959,0.181" Width="182" Foreground="White" Background="#00747474" Height="83" FontFamily="Segoe WP Semibold" FontSize="30"/>
+
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
