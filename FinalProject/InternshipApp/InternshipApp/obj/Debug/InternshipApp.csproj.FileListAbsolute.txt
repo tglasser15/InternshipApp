@@ -172,7 +172,6 @@ C:\Users\Tommy\Desktop\InternshipApp\InternshipApp\obj\Debug\InternshipApp.cspro
 \\cs1\CS_Students\tglasser15\CS396\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.csprojResolveAssemblyReference.cache
 C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.csprojResolveAssemblyReference.cache
 C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\App.g.cs
-C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\AppMainPage.g.cs
 C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\Bookmarks.g.cs
 C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\Individual.g.cs
 C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\MainPage.g.cs
@@ -348,3 +347,4 @@ C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\Interns
 C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.dll
 C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.pdb
 C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\XapCacheFile.xml
+C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.csprojResolveAssemblyReference.cache

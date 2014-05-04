@@ -38,33 +38,34 @@ namespace InternshipApp
 
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
-            checkFields();
-            if (invalidField == false)
-            {
-                string myname = textEmail.Text;
-                string mypass = passwordBox.Password;
+            NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+            //checkFields();
+            //if (invalidField == false)
+            //{
+            //    string myname = textEmail.Text;
+            //    string mypass = passwordBox.Password;
 
 
-                try
-                {
-                    await ParseUser.LogInAsync(myname, mypass);
-                    //login successful
-                    NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
-                }
+            //    try
+            //    {
+            //        await ParseUser.LogInAsync(myname, mypass);
+            //        //login successful
+            //        NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+            //    }
 
-                catch (Exception ex)
-                {
-                    checkValidEmail(myname);
-                    //login failed
-                    textBlockError.Visibility = Visibility.Visible;
-                    if (invalidEmail == true)
-                        textBlockError.Text = "Account does not exist.";
-                    else
-                        textBlockError.Text = "Failed to login";
+            //    catch (Exception ex)
+            //    {
+            //        checkValidEmail(myname);
+            //        //login failed
+            //        textBlockError.Visibility = Visibility.Visible;
+            //        if (invalidEmail == true)
+            //            textBlockError.Text = "Account does not exist.";
+            //        else
+            //            textBlockError.Text = "Failed to login";
 
 
-                }
-            }
+            //    }
+            //}
 
         }
 
