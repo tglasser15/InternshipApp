@@ -16,15 +16,15 @@
 >
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="#FF4387C1">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBox Name="SearchBar" Text="Search Here" TextAlignment="Center" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Height="74"/>
+        <StackPanel Grid.Row="0" Margin="0,17,0,28">
+            <TextBox Name="SearchBar" Text="Search Here" Foreground="#545454" FontFamily="Segoe WP Light" FontSize="50" TextAlignment="Left" GotFocus="SearchBar_GotFocus" LostFocus="SearchBar_LostFocus" Height="106"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -58,22 +58,26 @@
                     </Grid>
                 </DataTemplate>
             </Grid.Resources>
-            <TextBlock HorizontalAlignment="Left" Height="41" TextWrapping="Wrap" Text="Filter Search By :" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Height="35" Margin="22,63,0,0" TextWrapping="Wrap" Text="Category: " VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Height="35" Margin="22,145,0,0" TextWrapping="Wrap" Text="Location:" VerticalAlignment="Top" Width="104" Grid.ColumnSpan="2"/>
-            <Button Name="buttonSearch" Content="Search" HorizontalAlignment="Left" Margin="40,194,0,0" VerticalAlignment="Top" Width="183" Height="71" Click="buttonSearch_Click"/>
-            <TextBox Name="LocationSearch" Background="White" GotFocus="LocationBar_GotFocus" LostFocus="LocationBar_LostFocus" HorizontalAlignment="Left" Height="74" Margin="100,120,0,0" TextWrapping="Wrap" Text="Enter Location" VerticalAlignment="Top" Width="356"/>
-            <TextBlock TextDecorations="Underline" FontSize="30" HorizontalAlignment="Left" TextAlignment="Center" Margin="10,289,0,0" TextWrapping="Wrap" Text="Recent Internships" VerticalAlignment="Top" Width="436"/>
-            <Button x:Name="buttonSeeAll" Content="See All" HorizontalAlignment="Left" Margin="244,194,0,0" VerticalAlignment="Top" Width="183" Height="71" Click="buttonSeeAll_click"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="Filter Search By :" FontFamily="Segoe WP Semibold" FontSize="26" VerticalAlignment="Top" Width="206" Grid.RowSpan="2" Margin="0,-24,0,0"/>
+            <TextBlock HorizontalAlignment="Left" Height="35" Margin="3,30,0,0" TextWrapping="Wrap" Text="Category: "  FontFamily="Segoe WP Semibold" VerticalAlignment="Top" Width="104" Grid.RowSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Margin="3,120,0,390" TextWrapping="Wrap" Text="Location:" FontFamily="Segoe WP Semibold" Grid.RowSpan="2" Width="89" />
+            <Button Name="buttonSearch" Content="Search" BorderBrush="Transparent" Background="White" Foreground="#FF4387C1" FontFamily="Segoe WP Light" Margin="0,180,0,0" VerticalAlignment="Top" Height="93" Click="buttonSearch_Click" Grid.RowSpan="2"/>
+            <TextBox Name="LocationSearch" Background="White" Foreground="#545454" GotFocus="LocationBar_GotFocus" LostFocus="LocationBar_LostFocus" HorizontalAlignment="Left" Height="74" Margin="100,110,0,0" TextWrapping="Wrap" Text="Enter Location" VerticalAlignment="Top" Width="356" Grid.RowSpan="2"/>
+            <TextBlock  FontSize="30" HorizontalAlignment="Left" TextAlignment="Center" Margin="10,291,0,0" TextWrapping="Wrap" Text="Recent Internships" VerticalAlignment="Top" Width="436" Grid.RowSpan="2"/>
+            <Button x:Name="buttonSeeAll" Content="View All" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="305,245,-32,0" VerticalAlignment="Top" Width="183" Height="75" Click="buttonSeeAll_click" Grid.RowSpan="2"/>
             <ListBox                
-                             Margin="0,334,0,10"
+                             Margin="0,337,0,7"
                              ScrollViewer.VerticalScrollBarVisibility="Visible"
                              ItemTemplate="{StaticResource tweetlist}"
-                             x:Name="tweetList"
+                             x:Name="tweetList" Grid.RowSpan="2"
                             >
             </ListBox>
-            <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="187,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible"/>
-            <toolkit:ListPicker Background="White" Foreground="Black" x:Name="OptionSelector" Margin="112,46,10,243">
+            <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="187,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible" Grid.RowSpan="2"/>
+            <toolkit:ListPicker Background="White" Foreground="#545454" x:Name="OptionSelector" Margin="112,24,10,245" Grid.RowSpan="2">
                 <toolkit:ListPickerItem x:Name="Option1" Content="Please select a field..."  />
                 <toolkit:ListPickerItem x:Name="Option2" Content="Computer Science"/>
                 <toolkit:ListPickerItem x:Name="Option3" Content="Math" />
