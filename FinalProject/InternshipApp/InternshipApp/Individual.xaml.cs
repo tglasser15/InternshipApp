@@ -12,10 +12,11 @@ namespace InternshipApp
 {
     public partial class Individual : PhoneApplicationPage
     {
-
+        
         public Individual()
         {
             InitializeComponent();
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -26,6 +27,12 @@ namespace InternshipApp
                 information.Text = SearchPage.send_internshipInformation(); //retrieve the internship information for the specific internship button pressed
             if (parameterValue == "Results")
                 information.Text = SearchResults.send_internshipInformation();
+            
+        }
+
+        private void Bookmark_Clicked(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }

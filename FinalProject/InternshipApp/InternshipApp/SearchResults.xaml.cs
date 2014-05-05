@@ -13,6 +13,7 @@ using System.Net.NetworkInformation;
 using TweetSharp;
 using Windows.UI.Popups;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 
 namespace InternshipApp
@@ -21,7 +22,7 @@ namespace InternshipApp
     public partial class SearchResults : PhoneApplicationPage
     {
 
-        IEnumerable<TweetSharp.TwitterStatus> results; //ienumerable holder 
+        IEnumerable<TweetSharp.TwitterStatus> results;//ienumerable holder 
         //static List<string> results;
         static string internship_information; //string holder for internship information
 
@@ -47,7 +48,9 @@ namespace InternshipApp
 
         private void internshipButton(object sender, RoutedEventArgs e)
         {
+            
             internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
+            int index = (sender as Button).TabIndex;
             NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative)); //navigate to information on individual internships
         }
 

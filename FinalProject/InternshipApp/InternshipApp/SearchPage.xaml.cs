@@ -86,7 +86,7 @@ namespace InternshipApp
                         if (rep.StatusCode == HttpStatusCode.OK)
                         {
                             //bind
-                            this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts; });
+                            this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts.Take(3); });
                             results = ts; //set twitter feeds to holder since ts is a local variable
 
                         }
@@ -170,7 +170,7 @@ namespace InternshipApp
 
         }
 
-        //retrieves filtered results
+        //sends filtered results
         public static IEnumerable<TweetSharp.TwitterStatus> send_results()
         {
             return results;
