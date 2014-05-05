@@ -22,13 +22,46 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Under Maintenance" Foreground="Yellow" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Bookmarks" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.Resources>
+                <DataTemplate x:Key="tweetlist">
+                    <Grid>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="{Binding Text}" Height="50" Width="50" Grid.Row="0" Grid.Column="0" 
+                         VerticalAlignment="Top" Margin="0,7,7,0"
+                       Grid.RowSpan="2" Click="internshipButton">
+
+                        </Button>
+                        <!--<TextBlock Text="{Binding CreatedDate}" Grid.Row="0" Grid.Column="1"
+                                 Foreground="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top"/>-->
+
+                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="CornflowerBlue"
+                               Grid.Row="1" Grid.Column="1"
+                               VerticalAlignment="Top"
+                               />
+
+                    </Grid>
+                </DataTemplate>
+            </Grid.Resources>
+            <ListBox                
+                             Margin="0,0,0,10"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ItemTemplate="{StaticResource tweetlist}"
+                             x:Name="tweetList"
+                            >
+            </ListBox>
         </Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -31,8 +31,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="bookmark" Click="Bookmark_Clicked">Bookmark Me!</Button>
-            <TextBlock x:Name="information" Text="" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Margin="0,93,0,10"/>
+            <Button x:Name="bookmark" Click="Bookmark_Clicked" Grid.Row="0" Grid.RowSpan="1" >Bookmark Me!</Button>
+            <TextBlock x:Name="information" Text="" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" 
+                       Margin="0,0,0,10" Grid.Row="1" />
         </Grid>
     </Grid>
 

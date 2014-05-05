@@ -23,6 +23,8 @@ namespace InternshipApp
     {
         static IEnumerable<TweetSharp.TwitterStatus> results; //create ienumberable of results to match twitter feed type
         static string internship_information; //string holder for internship information
+        static List<string> result_indexing = new List<string>();
+        static int index;
 
         //register application on https://dev.twitter.com/ to retrieve API keys below
 
@@ -176,13 +178,12 @@ namespace InternshipApp
             return results;
         }
 
-        //public static List<string> send_results()
-
         //if an item in the listbox is pressed..
         private void internshipButton(object sender, RoutedEventArgs e)
         {
-
-            internship_information = (sender as Button).Content.ToString(); //retrieve content of item on listbox
+            result_indexing = results.Select(o => o.Text).ToList();
+            internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
+            index = result_indexing.IndexOf(internship_information);
             NavigationService.Navigate(new Uri("/Individual.xaml?param=RecentInternships", UriKind.Relative)); //navigate to information on individual internships
         }
 
@@ -208,15 +209,17 @@ namespace InternshipApp
         {
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
-
         private void Bookmarks_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Bookmarks.xaml", UriKind.Relative));
         }
-
         private void SavedSearches_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
+        }
+        public static int send_index()
+        {
+            return index;
         }
 
     }
