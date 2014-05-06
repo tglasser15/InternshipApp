@@ -25,7 +25,7 @@ namespace InternshipApp
         static string internship_information; //string holder for internship information
         static List<string> result_indexing = new List<string>();
         static int index;
-
+        static List<SearchItem> saved_searches = new List<SearchItem>();
         //register application on https://dev.twitter.com/ to retrieve API keys below
 
         private string API_key = "v9QxYFQFTVUcImWwXq5Yhw";
@@ -72,8 +72,7 @@ namespace InternshipApp
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
             //savesearch.IsEnabled = false;
-            //bookmarks.IsEnabled = false;
-            //results = temp;
+
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 //validate API keys
@@ -110,6 +109,7 @@ namespace InternshipApp
 
         private void buttonSearch_Click(object sender, RoutedEventArgs e)
         {
+            
             //set text fields to upper - will be used later to filter results
             SearchBar.Text = SearchBar.Text.ToUpper();
             LocationSearch.Text = LocationSearch.Text.ToUpper();
@@ -165,6 +165,16 @@ namespace InternshipApp
 
                         results = queue.Distinct().ToList();
                     }
+                    //save searches
+                    if (SearchBar.Text == defaultSearch.ToUpper())
+                        SearchBar.Text = string.Empty;
+                    if (LocationSearch.Text == defaultLocation.ToUpper())
+                        LocationSearch.Text = string.Empty;
+                    if (field == defaultField.ToUpper())
+                        field = string.Empty;
+                    
+
+                    saved_searches.Add(new SearchItem(SearchBar.Text, field, LocationSearch.Text));
 
                     NavigationService.Navigate(new Uri("/SearchResults.xaml", UriKind.Relative)); //navigate to search results page
                 }
@@ -221,6 +231,9 @@ namespace InternshipApp
         {
             return index;
         }
-
+        public static List<SearchItem> send_savedSearches()
+        {
+            return saved_searches;
+        }
     }
 }

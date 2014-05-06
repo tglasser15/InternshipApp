@@ -27,7 +27,38 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <Grid.Resources>
+                <DataTemplate x:Key="tweetlist">
+                    <Grid>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock  Grid.Row="0" HorizontalAlignment="Left" Foreground="Black">
+                            <Run Text="General Search:   "/>
+                            <Run Text="{Binding GeneralSearch}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Foreground="Black" HorizontalAlignment="Left">
+                            <Run Text="Discipline Search: "/>
+                            <Run Text="{Binding DisciplineSearch}" />
+                         </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Foreground="Black"
+                               Grid.Row="2" HorizontalAlignment="Left">
+                            <Run Text="Location Search:   "/>
+                            <Run Text="{Binding Location}" />
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </Grid.Resources>
+            <ListBox                
+                             Margin="0,10,0,7"
+                             ScrollViewer.VerticalScrollBarVisibility="Visible"
+                             ItemTemplate="{StaticResource tweetlist}"
+                             x:Name="tweetList"
+                            />
         </Grid>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>

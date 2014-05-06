@@ -12,29 +12,27 @@ namespace InternshipApp
 {
     public partial class SaveSearchPage : PhoneApplicationPage
     {
+        static List<SearchItem> saved_searches = new List<SearchItem>();
         public SaveSearchPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(SaveSearchPage_Loaded); 
-
+            this.Loaded += new RoutedEventHandler(SaveSearchPage_Loaded);
         }
 
         void SaveSearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //search.IsEnabled = false;
-            //bookmarks.IsEnabled = false;
+            saved_searches = SearchPage.send_savedSearches();
+            tweetList.ItemsSource = saved_searches;
         }
 
         private void Search_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
-
         private void Bookmarks_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Bookmarks.xaml", UriKind.Relative));
         }
-
         private void SavedSearches_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));

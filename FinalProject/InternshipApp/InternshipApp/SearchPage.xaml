@@ -76,7 +76,7 @@
                              x:Name="tweetList" Grid.RowSpan="2"
                             >
             </ListBox>
-            <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="187,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible" Grid.RowSpan="2"/>
+            <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="206,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible" Grid.RowSpan="2"/>
             <toolkit:ListPicker Background="White" Foreground="#545454" x:Name="OptionSelector" Margin="112,24,10,245" Grid.RowSpan="2">
                 <toolkit:ListPickerItem x:Name="Option1" Content="Please select a field..."  />
                 <toolkit:ListPickerItem x:Name="Option2" Content="Computer Science"/>

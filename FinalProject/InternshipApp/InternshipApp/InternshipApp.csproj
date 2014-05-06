@@ -117,6 +117,7 @@
     <Compile Include="SaveSearchPage.xaml.cs">
       <DependentUpon>SaveSearchPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchItem.cs" />
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
