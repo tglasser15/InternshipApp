@@ -42,7 +42,7 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchPage_Loaded); //TS
-            
+           //popup.IsOpen = true;
         }
 
         //set textboxes based on whether or not they have been clicked

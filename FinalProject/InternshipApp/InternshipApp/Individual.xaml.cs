@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Collections.ObjectModel;
+using Parse;
 
 namespace InternshipApp
 {
@@ -20,7 +21,6 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(BookmarksPage_Loaded); //TS
-            
         }
 
         private void BookmarksPage_Loaded(object sender, RoutedEventArgs e)
@@ -56,11 +56,28 @@ namespace InternshipApp
         {
             var ts = results.ElementAt(index);
             bookmarks.Add(ts);
+            savebookmarks();
         }
 
         public static ObservableCollection<TweetSharp.TwitterStatus> send_bookmarks()
         {
             return bookmarks;
+        }
+
+        public static async void  savebookmarks()
+        {
+            try
+            {
+                var user = ParseUser.CurrentUser;
+                int[] array = {5,5,5};
+                user["test"] = array;
+                user.ACL = new ParseACL(ParseUser.CurrentUser);
+                await user.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
     }
