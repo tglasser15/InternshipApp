@@ -30,34 +30,6 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
-            <Grid.Resources>
-                <DataTemplate x:Key="tweetlist">
-                    <Grid>
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="20"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Content="{Binding Text}" Height="50" Width="50" Grid.Row="0" Grid.Column="0" 
-                         VerticalAlignment="Top" Margin="0,7,7,0"
-                       Grid.RowSpan="2" Click="internshipButton">
-
-                        </Button>
-                        <!--<TextBlock Text="{Binding CreatedDate}" Grid.Row="0" Grid.Column="1"
-                                 Foreground="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top"/>-->
-
-                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="Black"
-                               Grid.Row="1" Grid.Column="1"
-                               VerticalAlignment="Top"
-                               />
-
-                    </Grid>
-                </DataTemplate>
-            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0*"/>
                 <RowDefinition/>
@@ -67,21 +39,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="3,120,0,390" TextWrapping="Wrap" Text="Location:" FontFamily="Segoe WP Semibold" Grid.RowSpan="2" Width="89" />
             <Button Name="buttonSearch" Content="Search" BorderBrush="Transparent" Background="White" Foreground="#FF4387C1" FontFamily="Segoe WP Light" Margin="0,180,0,0" VerticalAlignment="Top" Height="93" Click="buttonSearch_Click" Grid.RowSpan="2"/>
             <TextBox Name="LocationSearch" Background="White" Foreground="#545454" GotFocus="LocationBar_GotFocus" LostFocus="LocationBar_LostFocus" HorizontalAlignment="Left" Height="74" Margin="100,110,0,0" TextWrapping="Wrap" Text="Enter Location" VerticalAlignment="Top" Width="356" Grid.RowSpan="2"/>
-            <TextBlock  FontSize="30" HorizontalAlignment="Left" TextAlignment="Center" Margin="10,291,0,0" TextWrapping="Wrap" Text="Recent Internships" VerticalAlignment="Top" Width="436" Grid.RowSpan="2"/>
-            <Button x:Name="buttonSeeAll" Content="View All" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="305,245,-32,0" VerticalAlignment="Top" Width="183" Height="75" Click="buttonSeeAll_click" Grid.RowSpan="2"/>
-            <ListBox                
-                                     Margin="0,331,0,13"
-                                     ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                     ItemTemplate="{StaticResource tweetlist}"
-                                     x:Name="tweetList" Grid.RowSpan="2"
-                                    >
-            </ListBox>
-            <!--<Popup x:Name="popup" IsOpen="False" Height="Auto" Width="Auto">
-                <Border x:Name="border" Background="AliceBlue" 
-                        Height="{Binding ElementName=LayoutRoot,Path=ActualHeight}" Width="{Binding ElementName=LayoutRoot,Path=ActualWidth}" Visibility="Visible">
-                    
-                </Border>
-            </Popup>-->    
+            <Button x:Name="buttonSeeAll" Content="View All" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="305,245,-32,0" VerticalAlignment="Top" Width="183" Height="75" Click="buttonSeeAll_click" Grid.RowSpan="2"/> 
             <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="206,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible" Grid.RowSpan="2"/>
             <toolkit:ListPicker Background="White" Foreground="#545454" x:Name="OptionSelector" Margin="112,24,10,245" Grid.RowSpan="2">
                 <toolkit:ListPickerItem x:Name="Option1" Content="Please select a field..."  />

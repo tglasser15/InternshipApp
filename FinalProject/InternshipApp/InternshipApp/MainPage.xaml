@@ -48,11 +48,11 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="14,10,10,-10">
             <TextBlock Text="Email:"  Margin="10,-27,0,556" TextWrapping="Wrap" HorizontalAlignment="Left" Width="148" FontFamily="Segoe WP Semibold" FontSize="30"></TextBlock>
 
-            <TextBlock HorizontalAlignment="Left" Text="Password:"  Margin="10,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe WP Semibold" FontSize="30"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Text="Password:" Margin="10,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe WP Semibold" FontSize="30"></TextBlock>
 
-            <TextBox Name="textEmail" FontSize="32" HorizontalAlignment="Left" Height="83" Margin="0,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" FontFamily="/InternshipApp;component/Fonts/Fonts.zip#Rockwell"/>
+            <TextBox Name="textEmail" Text="test@gmail.com" FontSize="32" HorizontalAlignment="Left" Height="83" Margin="0,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" FontFamily="/InternshipApp;component/Fonts/Fonts.zip#Rockwell"/>
 
-            <PasswordBox Name="passwordBox" HorizontalAlignment="Left" MaxLength="20" GotFocus="passwordBox_GotFocus" LostFocus="passwordBox_LostFocus" Margin="0,141,0,0" VerticalAlignment="Top" Width="456" Height="83"/>
+            <PasswordBox Name="passwordBox" Password="password" HorizontalAlignment="Left" MaxLength="20" GotFocus="passwordBox_GotFocus" LostFocus="passwordBox_LostFocus" Margin="0,141,0,0" VerticalAlignment="Top" Width="456" Height="83"/>
 
             <TextBlock Name="textBlockError" Foreground="red" Visibility="Collapsed" HorizontalAlignment="Left" Margin="10,240,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="298"/>
 

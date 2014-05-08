@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\InternshipApp_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="5/7/2014 6:48:50 PM">
-  <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.dll" archivePath="InternshipApp.dll" lastWriteTime="5/7/2014 6:48:48 PM" />
+﻿<xapCache source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\InternshipApp_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="5/7/2014 10:10:04 PM">
+  <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.dll" archivePath="InternshipApp.dll" lastWriteTime="5/7/2014 10:10:03 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="5/3/2014 9:00:00 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="5/3/2014 9:00:00 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="5/3/2014 9:00:00 PM" />
@@ -10,7 +10,7 @@
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="5/3/2014 9:00:01 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="5/3/2014 9:00:01 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="5/3/2014 9:00:01 PM" />
-  <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="5/7/2014 6:39:02 PM" />
+  <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="5/7/2014 10:00:07 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="5/3/2014 9:00:00 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="5/3/2014 9:00:00 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\Hammock.WindowsPhone.dll" archivePath="Hammock.WindowsPhone.dll" lastWriteTime="5/3/2014 9:00:01 PM" />
@@ -23,5 +23,5 @@
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\packages\TweetSharp.2.3.1\lib\sl4-wp\Newtonsoft.Json.xml" archivePath="Newtonsoft.Json.xml" lastWriteTime="5/3/2014 9:00:02 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\packages\parse.1.2.14\lib\wp8\Parse.xml" archivePath="Parse.xml" lastWriteTime="5/3/2014 9:00:03 PM" />
   <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\packages\parse.1.2.14\lib\wp8\Parse.Phone.xml" archivePath="Parse.Phone.xml" lastWriteTime="5/3/2014 9:00:03 PM" />
-  <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="5/7/2014 6:39:02 PM" />
+  <file source="C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="5/7/2014 10:00:07 PM" />
 </xapCache>

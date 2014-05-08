@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Collections.ObjectModel;
+using Parse;
 
 namespace InternshipApp
 {
@@ -19,11 +20,16 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(Bookmarks_Loaded);
-            BookmarkList = Individual.send_bookmarks();
+            
         }
 
         void Bookmarks_Loaded(object sender, RoutedEventArgs e)
         {
+            if (MainPage.send_bookmarks() == null)
+                BookmarkList = MainPage.send_bookmarks();
+            else
+                BookmarkList = Individual.send_bookmarks();
+
             BookmarkList = BookmarkList.Distinct().ToList();
             tweetList.ItemsSource = BookmarkList;
         }
@@ -54,5 +60,15 @@ namespace InternshipApp
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            var user = new ParseObject("User");
+            //user["Bookmarks"] = bookmarks;
+            user.ACL = new ParseACL(ParseUser.CurrentUser);
+            user.SaveAsync()
+            ParseUser.LogOut();
+        }
+        
     }
 }

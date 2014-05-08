@@ -28,10 +28,10 @@ namespace InternshipApp
         static List<SearchItem> saved_searches = new List<SearchItem>();
         //register application on https://dev.twitter.com/ to retrieve API keys below
 
-        private string API_key = "v9QxYFQFTVUcImWwXq5Yhw";
-        private string API_secret = "hVoDkA3Z9AtWAS6rS4scvZU4e2BntEe9Jth38PbPQ";
-        private string AccessToken = "2412105906-r6teCDYAYMb81nCDazHbWszl0eE3uXYIpJj5jGm";
-        private string AccessToken_secret = "BdR89dprE8NMdJc1tkCjoU5fCqU90XKGWpFSaR19VE7zg";
+        //private string API_key = "v9QxYFQFTVUcImWwXq5Yhw";
+        //private string API_secret = "hVoDkA3Z9AtWAS6rS4scvZU4e2BntEe9Jth38PbPQ";
+        //private string AccessToken = "2412105906-r6teCDYAYMb81nCDazHbWszl0eE3uXYIpJj5jGm";
+        //private string AccessToken_secret = "BdR89dprE8NMdJc1tkCjoU5fCqU90XKGWpFSaR19VE7zg";
 
         //default search entries 
         private string defaultSearch = "Search Here";
@@ -42,7 +42,7 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchPage_Loaded); //TS
-           //popup.IsOpen = true;
+            results = MainPage.send_posts();
         }
 
         //set textboxes based on whether or not they have been clicked
@@ -73,36 +73,36 @@ namespace InternshipApp
         {
             //savesearch.IsEnabled = false;
 
-            if (NetworkInterface.GetIsNetworkAvailable())
-            {
-                //validate API keys
-                var service = new TwitterService(API_key, API_secret);
-                service.AuthenticateWith(AccessToken, AccessToken_secret);
+            //if (NetworkInterface.GetIsNetworkAvailable())
+            //{
+            //    validate API keys
+            //    var service = new TwitterService(API_key, API_secret);
+            //    service.AuthenticateWith(AccessToken, AccessToken_secret);
 
-                //ScreenName is the profile name of the twitter user.
-                try
-                {
-                    service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "Internship_DNF" }, (ts, rep) => //ts = twitter feeds
-                    {
-                        if (rep.StatusCode == HttpStatusCode.OK)
-                        {
-                            //bind
-                            this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts.Take(3); });
-                            results = ts; //set twitter feeds to holder since ts is a local variable
+            //    ScreenName is the profile name of the twitter user.
+            //    try
+            //    {
+            //        service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "Internship_DNF" }, (ts, rep) => //ts = twitter feeds
+            //        {
+            //            if (rep.StatusCode == HttpStatusCode.OK)
+            //            {
+            //                bind
+            //                this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts.Take(3); });
+            //                results = ts; //set twitter feeds to holder since ts is a local variable
 
-                        }
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-            else
-            {
-                errorSearch.Text = "Please check your internet connection.";
-                MessageBox.Show("Please check your internet connection.");
-            }
+            //            }
+            //        });
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //    }
+            //}
+            //else
+            //{
+            //    errorSearch.Text = "Please check your internet connection.";
+            //    MessageBox.Show("Please check your internet connection.");
+            //}
 
         }
 
@@ -117,13 +117,7 @@ namespace InternshipApp
             field = field.ToUpper();
 
             //if there are no results, allow for tweets to load
-            if (results == null)
-            {
-                errorSearch.Text = "Wait for tweets to load";
-                errorSearch.Visibility = Visibility.Visible;
-            }
-            else
-            {
+
                 //if text edit fields are in their default texts, report invalid search
                 if ((SearchBar.Text == defaultSearch || SearchBar.Text == defaultSearch.ToUpper()) && (field == defaultField || field == defaultField.ToUpper()) && (LocationSearch.Text == defaultLocation || LocationSearch.Text == defaultLocation.ToUpper()))
                 {
@@ -178,7 +172,7 @@ namespace InternshipApp
 
                     NavigationService.Navigate(new Uri("/SearchResults.xaml", UriKind.Relative)); //navigate to search results page
                 }
-            }
+            
 
         }
 

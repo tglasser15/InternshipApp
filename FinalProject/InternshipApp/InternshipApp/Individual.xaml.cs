@@ -25,6 +25,15 @@ namespace InternshipApp
 
         private void BookmarksPage_Loaded(object sender, RoutedEventArgs e)
         {
+            IEnumerable<TweetSharp.TwitterStatus> temp;
+            temp = MainPage.send_bookmarks();
+            foreach (TweetSharp.TwitterStatus ts in temp)
+            {
+                bookmarks.Add(ts);
+            }
+
+
+
             bookmark.IsEnabled = true;
         }
 
@@ -32,12 +41,12 @@ namespace InternshipApp
         {
             string parameterValue = NavigationContext.QueryString["param"];
 
-            if (parameterValue == "RecentInternships")
-            {
-                information.Text = SearchPage.send_internshipInformation(); //retrieve the internship information for the specific internship button pressed
-                results = SearchPage.send_results();
-                index = SearchPage.send_index();
-            }
+            //if (parameterValue == "RecentInternships")
+            //{
+            //    information.Text = SearchPage.send_internshipInformation(); //retrieve the internship information for the specific internship button pressed
+            //    results = SearchPage.send_results();
+            //    index = SearchPage.send_index();
+            //}
             if (parameterValue == "Results")
             {
                 information.Text = SearchResults.send_internshipInformation();
@@ -56,29 +65,11 @@ namespace InternshipApp
         {
             var ts = results.ElementAt(index);
             bookmarks.Add(ts);
-            savebookmarks();
         }
 
         public static ObservableCollection<TweetSharp.TwitterStatus> send_bookmarks()
         {
             return bookmarks;
         }
-
-        public static async void  savebookmarks()
-        {
-            try
-            {
-                var user = ParseUser.CurrentUser;
-                int[] array = {5,5,5};
-                user["test"] = array;
-                user.ACL = new ParseACL(ParseUser.CurrentUser);
-                await user.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
     }
 }
