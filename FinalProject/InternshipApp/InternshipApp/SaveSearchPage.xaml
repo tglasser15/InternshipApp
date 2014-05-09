@@ -68,6 +68,10 @@
             <shell:ApplicationBarIconButton IsEnabled="True" x:Name="bookmarks" Click="Bookmarks_Click" IconUri="saveicon.jpg" Text="bookmarks"/>
             <shell:ApplicationBarIconButton IsEnabled="True" x:Name="savesearch" Click="SavedSearches_Click" IconUri="saveicon.jpg" Text="savedsearches"/>
 
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Click="Logout_Click" Text="Logout" />
+            </shell:ApplicationBar.MenuItems>
+
 
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

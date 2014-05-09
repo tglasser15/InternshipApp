@@ -66,7 +66,7 @@ namespace InternshipApp
             var user = new ParseObject("User");
             //user["Bookmarks"] = bookmarks;
             user.ACL = new ParseACL(ParseUser.CurrentUser);
-            user.SaveAsync()
+            user.SaveAsync();
             ParseUser.LogOut();
         }
         

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Parse;
 
 namespace InternshipApp
 {
@@ -36,6 +37,14 @@ namespace InternshipApp
         private void SavedSearches_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
+        }
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            var user = new ParseObject("User");
+            //user["Bookmarks"] = bookmarks;
+            user.ACL = new ParseACL(ParseUser.CurrentUser);
+            user.SaveAsync();
+            ParseUser.LogOut();
         }
     }
 }

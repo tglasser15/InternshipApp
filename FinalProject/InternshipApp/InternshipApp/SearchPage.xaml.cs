@@ -14,6 +14,7 @@ using Windows.UI.Popups;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
+using Parse;
 
 
 namespace InternshipApp
@@ -228,6 +229,15 @@ namespace InternshipApp
         public static List<SearchItem> send_savedSearches()
         {
             return saved_searches;
+        }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            var user = new ParseObject("User");
+            //user["Bookmarks"] = bookmarks;
+            user.ACL = new ParseACL(ParseUser.CurrentUser);
+            user.SaveAsync();
+            ParseUser.LogOut();
         }
     }
 }

@@ -14,6 +14,7 @@ using TweetSharp;
 using Windows.UI.Popups;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using Parse;
 
 
 namespace InternshipApp
@@ -68,7 +69,14 @@ namespace InternshipApp
             return results;
         }
 
-
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            var user = new ParseObject("User");
+            //user["Bookmarks"] = bookmarks;
+            user.ACL = new ParseACL(ParseUser.CurrentUser);
+            user.SaveAsync();
+            ParseUser.LogOut();
+        }
 
     }
 }

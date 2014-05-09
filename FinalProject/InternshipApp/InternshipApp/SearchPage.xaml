@@ -34,13 +34,19 @@
                 <RowDefinition Height="0*"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Left" Height="39" TextWrapping="Wrap" Text="Filter Search By :" FontFamily="Segoe WP Semibold" FontSize="26" VerticalAlignment="Top" Width="206" Grid.RowSpan="2" Margin="0,-24,0,0"/>
-            <TextBlock HorizontalAlignment="Left" Height="35" Margin="3,30,0,0" TextWrapping="Wrap" Text="Category: "  FontFamily="Segoe WP Semibold" VerticalAlignment="Top" Width="104" Grid.RowSpan="2"/>
-            <TextBlock HorizontalAlignment="Left" Margin="3,120,0,390" TextWrapping="Wrap" Text="Location:" FontFamily="Segoe WP Semibold" Grid.RowSpan="2" Width="89" />
-            <Button Name="buttonSearch" Content="Search" BorderBrush="Transparent" Background="White" Foreground="#FF4387C1" FontFamily="Segoe WP Light" Margin="0,180,0,0" VerticalAlignment="Top" Height="93" Click="buttonSearch_Click" Grid.RowSpan="2"/>
+
+            <TextBlock  Text="Category: " HorizontalAlignment="Left" Height="35" Margin="3,30,0,0" TextWrapping="Wrap"  FontFamily="Segoe WP Semibold" VerticalAlignment="Top" Width="104" Grid.RowSpan="2"/>
+
+            <TextBlock Text="Location:" HorizontalAlignment="Left" Margin="3,120,0,390" TextWrapping="Wrap"  FontFamily="Segoe WP Semibold" Grid.RowSpan="2" Width="89" />
+            
+            <Button Name="buttonSearch" Content="Search" BorderBrush="Transparent" Background="White" Foreground="#FF4387C1" FontFamily="Segoe WP Light" Margin="0,380,0,0" VerticalAlignment="Top" Height="93" Click="buttonSearch_Click" Grid.RowSpan="2"/>
+            
             <TextBox Name="LocationSearch" Background="White" Foreground="#545454" GotFocus="LocationBar_GotFocus" LostFocus="LocationBar_LostFocus" HorizontalAlignment="Left" Height="74" Margin="100,110,0,0" TextWrapping="Wrap" Text="Enter Location" VerticalAlignment="Top" Width="356" Grid.RowSpan="2"/>
-            <Button x:Name="buttonSeeAll" Content="View All" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="305,245,-32,0" VerticalAlignment="Top" Width="183" Height="75" Click="buttonSeeAll_click" Grid.RowSpan="2"/> 
+            
+            <Button x:Name="buttonSeeAll" Content="View All Internships" HorizontalAlignment="Left" BorderBrush="Transparent" Margin="200,465,-32,0" VerticalAlignment="Top" Width="260" Height="75" Click="buttonSeeAll_click" Grid.RowSpan="2"/> 
+            
             <TextBlock Name="errorSearch" Foreground="Red" HorizontalAlignment="Left" Margin="206,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="229" Visibility="Visible" Grid.RowSpan="2"/>
+            
             <toolkit:ListPicker Background="White" Foreground="#545454" x:Name="OptionSelector" Margin="112,24,10,245" Grid.RowSpan="2">
                 <toolkit:ListPickerItem x:Name="Option1" Content="Please select a field..."  />
                 <toolkit:ListPickerItem x:Name="Option2" Content="Computer Science"/>
@@ -56,6 +62,10 @@
             <shell:ApplicationBarIconButton x:Name="search" IsEnabled="True" Click="Search_Click" IconUri="searchicon.jpg" Text="search" />
             <shell:ApplicationBarIconButton x:Name="bookmarks" IsEnabled="True" Click="Bookmarks_Click" IconUri="saveicon.jpg" Text="bookmars"/>
             <shell:ApplicationBarIconButton x:Name="savesearch" IsEnabled="True" Click="SavedSearches_Click" IconUri="saveicon.jpg" Text="savedsearches"/>
+
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Click="Logout_Click" Text="Logout" />
+            </shell:ApplicationBar.MenuItems>
 
 
         </shell:ApplicationBar>
