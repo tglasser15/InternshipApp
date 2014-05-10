@@ -47,7 +47,7 @@
                         <!--<TextBlock Text="{Binding CreatedDate}" Grid.Row="0" Grid.Column="1"
                                  Foreground="{StaticResource PhoneAccentBrush}" VerticalAlignment="Top"/>-->
 
-                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="CornflowerBlue"
+                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="White"
                                Grid.Row="1" Grid.Column="1"
                                VerticalAlignment="Top"
                                />

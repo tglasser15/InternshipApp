@@ -47,7 +47,7 @@ namespace InternshipApp
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-                        if (NetworkInterface.GetIsNetworkAvailable())
+            if (NetworkInterface.GetIsNetworkAvailable())
             {
                 //validate API keys
                 var service = new TwitterService(API_key, API_secret);
@@ -97,11 +97,13 @@ namespace InternshipApp
                     {
                         var user = await ParseUser.LogInAsync(myname, mypass);
                         //login successful
-                        List<string> holder = new List<string>();
-                        holder = user.Get<IList<string>>("test").ToList();
+                        
+                        //Get bookmarks
+                        List<string> bookmark_holder = new List<string>();
+                        bookmark_holder = user.Get<IList<string>>("Bookmarks").ToList();
                         ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>();
                         IEnumerable<TwitterStatus> temp;
-                        foreach (string s in holder)
+                        foreach (string s in bookmark_holder)
                         {
                             temp = bookmarks.Where(o => o.Text.Contains(s)).ToList();
                             foreach (TwitterStatus ts in temp)
@@ -112,6 +114,9 @@ namespace InternshipApp
 
                         if (queue != null)
                             bookmarks = queue.ToList();
+                        ////////////////////////////////
+
+                        //Get saved searches
 
                         NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
                     }

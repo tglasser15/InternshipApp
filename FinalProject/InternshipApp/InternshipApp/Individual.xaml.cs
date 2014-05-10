@@ -33,25 +33,18 @@ namespace InternshipApp
             }
 
 
-
-            bookmark.IsEnabled = true;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             string parameterValue = NavigationContext.QueryString["param"];
 
-            //if (parameterValue == "RecentInternships")
-            //{
-            //    information.Text = SearchPage.send_internshipInformation(); //retrieve the internship information for the specific internship button pressed
-            //    results = SearchPage.send_results();
-            //    index = SearchPage.send_index();
-            //}
             if (parameterValue == "Results")
             {
                 information.Text = SearchResults.send_internshipInformation();
                 results = SearchResults.send_results();
                 index = SearchResults.send_index();
+                bookmark.IsEnabled = true;
             }
             if (parameterValue == "Bookmark")
             {

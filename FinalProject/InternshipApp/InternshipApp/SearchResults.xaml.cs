@@ -31,20 +31,34 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchResults_Loaded); //TS
-            results = SearchPage.send_results(); //retrieve results from filtered search
-
-            //if there are not results, display error message
-            if (results.Count() == 0)
-            {
-                emptyResult.Text = "No results...";
-                emptyResult.Visibility = Visibility.Visible;
-
-            }
+            //results = SearchPage.send_results(); //retrieve results from filtered search
         }
 
-        void SearchResults_Loaded(object sender, RoutedEventArgs e)
+        public void SearchResults_Loaded(object sender, RoutedEventArgs e)
         {
-            tweetList.ItemsSource = results; //set listbox to items in result
+            tweetList.ItemsSource = results;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            string parameterValue = NavigationContext.QueryString["param"];
+
+            if (parameterValue == "results")
+            {
+                results = SearchPage.send_results();
+                //if there are no results, display error message
+                if (results.Count() == 0)
+                {
+                    emptyResult.Text = "No results...";
+                    emptyResult.Visibility = Visibility.Visible;
+
+                }
+            }
+            if (parameterValue == "all")
+            {
+                results = MainPage.send_posts();
+            }
+
         }
 
         private void internshipButton(object sender, RoutedEventArgs e)
@@ -69,13 +83,19 @@ namespace InternshipApp
             return results;
         }
 
-        private void Logout_Click(object sender, EventArgs e)
+        private async void Logout_Click(object sender, EventArgs e)
         {
-            var user = new ParseObject("User");
-            //user["Bookmarks"] = bookmarks;
+            IEnumerable<TweetSharp.TwitterStatus> BookmarkList = Bookmarks.send_bookmarkList();
+            List<string> str_books = new List<string>();
+            str_books = BookmarkList.Select(o => o.Text).ToList();
+
+            var user = ParseUser.CurrentUser;
+            user["test"] = str_books;
             user.ACL = new ParseACL(ParseUser.CurrentUser);
-            user.SaveAsync();
+            await user.SaveAsync();
             ParseUser.LogOut();
+
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
 
     }

@@ -171,7 +171,7 @@ namespace InternshipApp
 
                     saved_searches.Add(new SearchItem(SearchBar.Text, field, LocationSearch.Text));
 
-                    NavigationService.Navigate(new Uri("/SearchResults.xaml", UriKind.Relative)); //navigate to search results page
+                    NavigationService.Navigate(new Uri("/SearchResults.xaml?param=results", UriKind.Relative)); //navigate to search results page
                 }
             
 
@@ -201,7 +201,7 @@ namespace InternshipApp
                 errorSearch.Visibility = Visibility.Visible;
             }
             else
-                NavigationService.Navigate(new Uri("/SearchResults.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/SearchResults.xaml?param=all", UriKind.Relative));
         }
 
         //retrieve information on internship
@@ -231,13 +231,19 @@ namespace InternshipApp
             return saved_searches;
         }
 
-        private void Logout_Click(object sender, EventArgs e)
+        private async void Logout_Click(object sender, EventArgs e)
         {
-            var user = new ParseObject("User");
-            //user["Bookmarks"] = bookmarks;
+            IEnumerable<TweetSharp.TwitterStatus> BookmarkList = Bookmarks.send_bookmarkList();
+            List<string> str_books = new List<string>();
+            str_books = BookmarkList.Select(o => o.Text).ToList();
+
+            var user = ParseUser.CurrentUser;
+            user["Bookmarks"] = str_books;
             user.ACL = new ParseACL(ParseUser.CurrentUser);
-            user.SaveAsync();
+            await user.SaveAsync();
             ParseUser.LogOut();
+
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
     }
 }

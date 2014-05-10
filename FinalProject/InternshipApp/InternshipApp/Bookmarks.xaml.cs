@@ -14,7 +14,7 @@ namespace InternshipApp
 {
     public partial class Bookmarks : PhoneApplicationPage
     {
-        IEnumerable<TweetSharp.TwitterStatus> BookmarkList;
+        static IEnumerable<TweetSharp.TwitterStatus> BookmarkList;
         static string internship_information;
         public Bookmarks()
         {
@@ -25,7 +25,7 @@ namespace InternshipApp
 
         void Bookmarks_Loaded(object sender, RoutedEventArgs e)
         {
-            if (MainPage.send_bookmarks() == null)
+            if (MainPage.send_bookmarks() != null)
                 BookmarkList = MainPage.send_bookmarks();
             else
                 BookmarkList = Individual.send_bookmarks();
@@ -61,13 +61,24 @@ namespace InternshipApp
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
 
-        private void Logout_Click(object sender, EventArgs e)
+        public static IEnumerable<TweetSharp.TwitterStatus> send_bookmarkList()
         {
-            var user = new ParseObject("User");
-            //user["Bookmarks"] = bookmarks;
+            return BookmarkList;
+        }
+
+        private async void Logout_Click(object sender, EventArgs e)
+        {
+            
+            List<string> str_books = new List<string>();
+            str_books = BookmarkList.Select(o => o.Text).ToList();
+
+            var user = ParseUser.CurrentUser;
+            user["Bookmarks"] = str_books;
             user.ACL = new ParseACL(ParseUser.CurrentUser);
-            user.SaveAsync();
+            await user.SaveAsync();
             ParseUser.LogOut();
+
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
         
     }

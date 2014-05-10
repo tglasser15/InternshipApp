@@ -38,13 +38,18 @@ namespace InternshipApp
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
-        private void Logout_Click(object sender, EventArgs e)
+        private async void Logout_Click(object sender, EventArgs e)
         {
-            var user = new ParseObject("User");
-            //user["Bookmarks"] = bookmarks;
-            user.ACL = new ParseACL(ParseUser.CurrentUser);
-            user.SaveAsync();
+            IEnumerable<TweetSharp.TwitterStatus> BookmarkList = Bookmarks.send_bookmarkList();
+            List<string> str_books = new List<string>();
+            str_books = BookmarkList.Select(o => o.Text).ToList();
+            var user = ParseUser.CurrentUser;
+            user["Bookmarks"] = str_books;
+            await user.SaveAsync();
             ParseUser.LogOut();
+
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }
+
     }
 }
