@@ -73,7 +73,7 @@ namespace InternshipApp
             str_books = BookmarkList.Select(o => o.Text).ToList();
 
             var user = ParseUser.CurrentUser;
-            user["Bookmarks"] = str_books;
+            user["test"] = str_books;
             user.ACL = new ParseACL(ParseUser.CurrentUser);
             await user.SaveAsync();
             ParseUser.LogOut();
