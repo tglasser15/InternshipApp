@@ -29,15 +29,17 @@ namespace InternshipApp
         static List<SearchItem> saved_searches = new List<SearchItem>();
         //register application on https://dev.twitter.com/ to retrieve API keys below
 
-        //private string API_key = "v9QxYFQFTVUcImWwXq5Yhw";
-        //private string API_secret = "hVoDkA3Z9AtWAS6rS4scvZU4e2BntEe9Jth38PbPQ";
-        //private string AccessToken = "2412105906-r6teCDYAYMb81nCDazHbWszl0eE3uXYIpJj5jGm";
-        //private string AccessToken_secret = "BdR89dprE8NMdJc1tkCjoU5fCqU90XKGWpFSaR19VE7zg";
+        //static List<SearchItem> saved_searches = new List<SearchItem>();
+        static List<string> save_general = new List<string>();
+        static List<string> save_major = new List<string>();
+        static List<string> save_location = new List<string>();
 
         //default search entries 
         private string defaultSearch = "Search Here";
         private string defaultLocation = "Enter Location";
         private string defaultField = "Please select a field...";
+
+        static IEnumerable<TweetSharp.TwitterStatus> BookmarkList;
 
         public SearchPage()
         {
@@ -72,39 +74,13 @@ namespace InternshipApp
         //TS
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //savesearch.IsEnabled = false;
+            if (MainPage.send_bookmarks() != null)
+                BookmarkList = MainPage.send_bookmarks();
+            else
+                BookmarkList = Individual.send_bookmarks();
 
-            //if (NetworkInterface.GetIsNetworkAvailable())
-            //{
-            //    validate API keys
-            //    var service = new TwitterService(API_key, API_secret);
-            //    service.AuthenticateWith(AccessToken, AccessToken_secret);
-
-            //    ScreenName is the profile name of the twitter user.
-            //    try
-            //    {
-            //        service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "Internship_DNF" }, (ts, rep) => //ts = twitter feeds
-            //        {
-            //            if (rep.StatusCode == HttpStatusCode.OK)
-            //            {
-            //                bind
-            //                this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = ts.Take(3); });
-            //                results = ts; //set twitter feeds to holder since ts is a local variable
-
-            //            }
-            //        });
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Console.WriteLine(ex.Message);
-            //    }
-            //}
-            //else
-            //{
-            //    errorSearch.Text = "Please check your internet connection.";
-            //    MessageBox.Show("Please check your internet connection.");
-            //}
-
+            BookmarkList = BookmarkList.Distinct().ToList();
+            saved_searches = MainPage.send_savedSearches();
         }
 
 
@@ -233,12 +209,27 @@ namespace InternshipApp
 
         private async void Logout_Click(object sender, EventArgs e)
         {
-            IEnumerable<TweetSharp.TwitterStatus> BookmarkList = Bookmarks.send_bookmarkList();
             List<string> str_books = new List<string>();
             str_books = BookmarkList.Select(o => o.Text).ToList();
+            for (int i = 0; i < saved_searches.Count; i++)
+            {
+                try
+                {
+                    save_general.Add(saved_searches.ElementAt(i).GeneralSearch);
+                    save_major.Add(saved_searches.ElementAt(i).DisciplineSearch);
+                    save_location.Add(saved_searches.ElementAt(i).Location);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             var user = ParseUser.CurrentUser;
             user["Bookmarks"] = str_books;
+            user["Save_General"] = save_general;
+            user["Save_Major"] = save_major;
+            user["Save_Location"] = save_location;
             user.ACL = new ParseACL(ParseUser.CurrentUser);
             await user.SaveAsync();
             ParseUser.LogOut();

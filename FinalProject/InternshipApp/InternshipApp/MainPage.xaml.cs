@@ -27,6 +27,11 @@ namespace InternshipApp
 
         static IEnumerable<TwitterStatus> bookmarks;
         static IEnumerable<TwitterStatus> posts;
+        static List<SearchItem> saved_searches = new List<SearchItem>();
+
+        static List<string> general = new List<string>();
+        static List<string> major = new List<string>();
+        static List<string> location = new List<string>();
         
         public MainPage()
         {
@@ -47,6 +52,7 @@ namespace InternshipApp
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //static IEnumerable<TwitterStatus> temp;
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 //validate API keys
@@ -61,7 +67,7 @@ namespace InternshipApp
                         if (rep.StatusCode == HttpStatusCode.OK)
                         {
                             //bind
-                            this.Dispatcher.BeginInvoke(() => { bookmarks = ts; });
+                            this.Dispatcher.BeginInvoke(() => { posts = ts; });
                         }
                     });
                 }
@@ -78,14 +84,13 @@ namespace InternshipApp
 
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
-            if (bookmarks == null)
+            if (posts == null)
             {
                 textBlockError.Visibility = Visibility.Visible;
                 textBlockError.Text = "Loading";
             }
             else
             {
-                posts = bookmarks;
                 checkFields();
                 if (invalidField == false)
                 {
@@ -100,23 +105,50 @@ namespace InternshipApp
                         
                         //Get bookmarks
                         List<string> bookmark_holder = new List<string>();
-                        bookmark_holder = user.Get<IList<string>>("Bookmarks").ToList();
-                        ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>();
-                        IEnumerable<TwitterStatus> temp;
-                        foreach (string s in bookmark_holder)
+                        try
                         {
-                            temp = bookmarks.Where(o => o.Text.Contains(s)).ToList();
-                            foreach (TwitterStatus ts in temp)
+                            bookmark_holder = user.Get<IList<string>>("Bookmarks").ToList();
+                            ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>();
+                            IEnumerable<TwitterStatus> temp;
+                            foreach (string s in bookmark_holder)
                             {
-                                queue.Add(ts);
+                                temp = posts.Where(o => o.Text.Contains(s)).ToList();
+                                foreach (TwitterStatus ts in temp)
+                                {
+                                    queue.Add(ts);
+                                }
                             }
+
+                            if (queue != null)
+                                bookmarks = queue.ToList();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
                         }
 
-                        if (queue != null)
-                            bookmarks = queue.ToList();
+                       
                         ////////////////////////////////
 
                         //Get saved searches
+                        try
+                        {
+                            general = user.Get<IList<string>>("Save_General").Distinct().ToList();
+                            major = user.Get<IList<string>>("Save_Major").Distinct().ToList();
+                            location = user.Get<IList<string>>("Save_Location").Distinct().ToList();
+
+                            foreach (string g in general)
+                                foreach (string m in major)
+                                    foreach (string l in location)
+                                    {
+                                        saved_searches.Add(new SearchItem(g, m, l));
+                                    }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+
 
                         NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
                     }
@@ -145,7 +177,6 @@ namespace InternshipApp
                 invalidEmail = true;
 
         }
-
         public async void SignUp_Click(object sender, RoutedEventArgs e)
         {
             checkFields();
@@ -173,17 +204,18 @@ namespace InternshipApp
                 NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
             }
         }
-
         public static IEnumerable<TwitterStatus> send_bookmarks()
         {
             return bookmarks;
         }
-
         public static IEnumerable<TwitterStatus> send_posts()
         {
             return posts;
         }
-
+        public static List<SearchItem> send_savedSearches()
+        {
+            return saved_searches;
+        }
         private void checkFields()
         {
             if (textEmail.Text != "")
@@ -227,18 +259,15 @@ namespace InternshipApp
 
 
         }
-
         private static bool ValidateEmail(string str)
         {
             return Regex.IsMatch(str, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
         }
-
         private void passwordBox_GotFocus(object sender, RoutedEventArgs e)
         {
             textBlockError.Text = "";
             textBlockError.Visibility = Visibility.Collapsed;
         }
-
         private void passwordBox_LostFocus(object sender, RoutedEventArgs e)
         {
             textBlockError.Text = "";

@@ -50,36 +50,19 @@ namespace InternshipApp
         {
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
         }
-
         private void Bookmarks_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Bookmarks.xaml", UriKind.Relative));
         }
-
         private void SavedSearches_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
-
         public static IEnumerable<TweetSharp.TwitterStatus> send_bookmarkList()
         {
             return BookmarkList;
         }
 
-        private async void Logout_Click(object sender, EventArgs e)
-        {
-            
-            List<string> str_books = new List<string>();
-            str_books = BookmarkList.Select(o => o.Text).ToList();
-
-            var user = ParseUser.CurrentUser;
-            user["test"] = str_books;
-            user.ACL = new ParseACL(ParseUser.CurrentUser);
-            await user.SaveAsync();
-            ParseUser.LogOut();
-
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-        }
         
     }
 }

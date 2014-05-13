@@ -27,9 +27,12 @@ namespace InternshipApp
         {
             IEnumerable<TweetSharp.TwitterStatus> temp;
             temp = MainPage.send_bookmarks();
-            foreach (TweetSharp.TwitterStatus ts in temp)
+            if (temp != null)
             {
-                bookmarks.Add(ts);
+                foreach (TweetSharp.TwitterStatus ts in temp)
+                {
+                    bookmarks.Add(ts);
+                }
             }
 
 

@@ -42,44 +42,7 @@ namespace InternshipApp
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
 
-        private async void Logout_Click(object sender, EventArgs e)
-        {
-            IEnumerable<TweetSharp.TwitterStatus> BookmarkList = Bookmarks.send_bookmarkList();
-            List<string> str_books = new List<string>();
-
-            str_books = BookmarkList.Select(o => o.Text).ToList();
-            for (int i = 0; i < saved_searches.Count; i++)
-            {
-                try
-                {
-                    save_general.Add(saved_searches.ElementAt(i).GeneralSearch);
-                    save_major.Add(saved_searches.ElementAt(i).DisciplineSearch);
-                    save_location.Add(saved_searches.ElementAt(i).Location);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-
-            var user = ParseUser.CurrentUser; 
-            user["Save_General"] = save_general;
-            user["Save_Major"] = save_major;
-            user["Save_Location"] = save_location;
-            user.ACL = new ParseACL(ParseUser.CurrentUser);
-            try
-            {
-                await user.SaveAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            ParseUser.LogOut();
-
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-        }
+        
 
     }
 }

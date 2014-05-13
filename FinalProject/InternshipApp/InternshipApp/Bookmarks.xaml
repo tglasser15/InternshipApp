@@ -23,7 +23,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Bookmarks" Margin="9,-7,0,0" FontSize="80" FontFamily="Segoe WP Light"/>
-            <Image Source="/images/bookmarks.png" Width="100" Height="100" Margin="-50, -140, -400, -50" />
+            <Image Source="/bookmarksLarge.png" Width="45" Height="100" Margin="-50, -140, -410, -50" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -67,14 +67,10 @@
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" Opacity="1.0" IsMenuEnabled="True" IsVisible="True">
-            <shell:ApplicationBarIconButton x:Name="search" IsEnabled="True" Click="Search_Click" IconUri="/images/search.png" Text="search" />
-            <shell:ApplicationBarIconButton x:Name="bookmarks" IsEnabled="True" Click="Bookmarks_Click" IconUri="/images/bookmarks.png" Text="bookmars"/>
-            <shell:ApplicationBarIconButton x:Name="savesearch" IsEnabled="True" Click="SavedSearches_Click" IconUri="/images/save.png" Text="savedsearches"/>
+            <shell:ApplicationBarIconButton x:Name="search" IsEnabled="True" Click="Search_Click" IconUri="/search.png" Text="search" />
+            <shell:ApplicationBarIconButton x:Name="bookmarks" IsEnabled="True" Click="Bookmarks_Click" IconUri="/bookmarks.png" Text="bookmars"/>
+            <shell:ApplicationBarIconButton x:Name="savesearch" IsEnabled="True" Click="SavedSearches_Click" IconUri="/save.png" Text="savedsearches"/>
            
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Click="Logout_Click" Text="Logout" />
-            </shell:ApplicationBar.MenuItems>
-       
         
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

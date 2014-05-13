@@ -349,4 +349,3 @@ C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\Interns
 C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\XapCacheFile.xml
 C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\LaunchPage.g.cs
 C:\Users\kglynn16\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\LaunchPage.g.cs
-C:\Users\Tommy\Documents\GitHub\InternshipApp\FinalProject\InternshipApp\InternshipApp\obj\Debug\InternshipApp.csprojResolveAssemblyReference.cache
