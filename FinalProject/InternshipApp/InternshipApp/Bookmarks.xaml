@@ -23,6 +23,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Bookmarks" Margin="9,-7,0,0" FontSize="80" FontFamily="Segoe WP Light"/>
+            <Image Source="/images/bookmarks.png" Width="100" Height="100" Margin="-50, -140, -400, -50" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->

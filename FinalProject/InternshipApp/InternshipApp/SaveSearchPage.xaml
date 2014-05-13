@@ -22,7 +22,8 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Saved Searches" Margin="0,-7,0,0" FontFamily="Segoe WP Light" FontSize="70"/>
+            <TextBlock Text="Saved Searches" Margin="0,-7,0,0" FontFamily="Segoe WP Light" FontSize="60"/>
+            <Image Source="/images/saveLarge.png" Width="55" Height="70" Margin="0, -67, -385, 0" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
