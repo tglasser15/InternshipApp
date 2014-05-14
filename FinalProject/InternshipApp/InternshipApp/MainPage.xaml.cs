@@ -26,7 +26,9 @@ namespace InternshipApp
         private string AccessToken_secret = "BdR89dprE8NMdJc1tkCjoU5fCqU90XKGWpFSaR19VE7zg";
 
         static IEnumerable<TwitterStatus> bookmarks;
-        static IEnumerable<TwitterStatus> posts;
+        static IEnumerable<TwitterStatus> container;
+        static IEnumerable<TwitterStatus> container2;
+        static ObservableCollection<TwitterStatus> posts = new ObservableCollection<TwitterStatus>();
         static List<SearchItem> saved_searches = new List<SearchItem>();
 
         static List<string> general = new List<string>();
@@ -62,12 +64,21 @@ namespace InternshipApp
                 //ScreenName is the profile name of the twitter user.
                 try
                 {
+                    service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "internshipp" }, (ts, rep) => //ts = twitter feeds
+                    {
+                        if (rep.StatusCode == HttpStatusCode.OK)
+                        {
+                            //bind
+                            this.Dispatcher.BeginInvoke(() => { container = ts; });
+                        }
+                    });
+
                     service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "Internship_DNF" }, (ts, rep) => //ts = twitter feeds
                     {
                         if (rep.StatusCode == HttpStatusCode.OK)
                         {
                             //bind
-                            this.Dispatcher.BeginInvoke(() => { posts = ts; });
+                            this.Dispatcher.BeginInvoke(() => { container2 = ts; });
                         }
                     });
                 }
@@ -80,11 +91,21 @@ namespace InternshipApp
             {
                 MessageBox.Show("Please check your internet connection.");
             }
+
+
         }
 
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
-            if (posts == null)
+            if (container != null && container2 != null)
+            {
+                foreach (TwitterStatus ts in container)
+                    posts.Add(ts);
+                foreach (TwitterStatus ts in container2)
+                    posts.Add(ts);
+            }
+
+            if (posts.Count == 0)
             {
                 textBlockError.Visibility = Visibility.Visible;
                 textBlockError.Text = "Loading";
@@ -133,16 +154,14 @@ namespace InternshipApp
                         //Get saved searches
                         try
                         {
-                            general = user.Get<IList<string>>("Save_General").Distinct().ToList();
-                            major = user.Get<IList<string>>("Save_Major").Distinct().ToList();
-                            location = user.Get<IList<string>>("Save_Location").Distinct().ToList();
+                            general = user.Get<IList<string>>("Save_General").ToList();
+                            major = user.Get<IList<string>>("Save_Major").ToList();
+                            location = user.Get<IList<string>>("Save_Location").ToList();
 
-                            foreach (string g in general)
-                                foreach (string m in major)
-                                    foreach (string l in location)
-                                    {
-                                        saved_searches.Add(new SearchItem(g, m, l));
-                                    }
+                            for (int i = 0; i < general.Count; i++)
+                            {
+                                saved_searches.Add(new SearchItem(general[i], major[i], location[i]));
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -208,7 +227,7 @@ namespace InternshipApp
         {
             return bookmarks;
         }
-        public static IEnumerable<TwitterStatus> send_posts()
+        public static ObservableCollection<TwitterStatus> send_posts()
         {
             return posts;
         }

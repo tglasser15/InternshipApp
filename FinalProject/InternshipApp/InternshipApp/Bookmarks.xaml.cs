@@ -25,7 +25,7 @@ namespace InternshipApp
 
         void Bookmarks_Loaded(object sender, RoutedEventArgs e)
         {
-            if (MainPage.send_bookmarks() != null)
+            if (Individual.send_bookmarks().Count == 0)
                 BookmarkList = MainPage.send_bookmarks();
             else
                 BookmarkList = Individual.send_bookmarks();

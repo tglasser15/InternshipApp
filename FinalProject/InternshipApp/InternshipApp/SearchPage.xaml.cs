@@ -215,6 +215,8 @@ namespace InternshipApp
             {
                 try
                 {
+                    if (i > 10)
+                        break;
                     save_general.Add(saved_searches.ElementAt(i).GeneralSearch);
                     save_major.Add(saved_searches.ElementAt(i).DisciplineSearch);
                     save_location.Add(saved_searches.ElementAt(i).Location);
