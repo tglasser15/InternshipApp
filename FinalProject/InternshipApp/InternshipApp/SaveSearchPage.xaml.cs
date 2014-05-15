@@ -25,7 +25,12 @@ namespace InternshipApp
 
         void SaveSearchPage_Loaded(object sender, RoutedEventArgs e)
         {
-            saved_searches = SearchPage.send_savedSearches();
+            if (SearchPage.send_savedSearches().Count == 0)
+                saved_searches = MainPage.send_savedSearches();
+            else
+                saved_searches = SearchPage.send_savedSearches();
+
+            saved_searches = saved_searches.Distinct().ToList();
             tweetList.ItemsSource = saved_searches;
         }
 

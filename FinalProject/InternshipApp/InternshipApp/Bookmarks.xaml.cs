@@ -30,8 +30,11 @@ namespace InternshipApp
             else
                 BookmarkList = Individual.send_bookmarks();
 
-            BookmarkList = BookmarkList.Distinct().ToList();
-            tweetList.ItemsSource = BookmarkList;
+            if (BookmarkList != null)
+            {
+                BookmarkList = BookmarkList.Distinct().ToList();
+                tweetList.ItemsSource = BookmarkList;
+            }
         }
 
         private void internshipButton(object sender, RoutedEventArgs e)

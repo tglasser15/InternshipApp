@@ -45,7 +45,8 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchPage_Loaded); //TS
-            results = MainPage.send_posts();
+            
+
         }
 
         //set textboxes based on whether or not they have been clicked
@@ -171,6 +172,7 @@ namespace InternshipApp
         //retrieve all internships posted
         private void buttonSeeAll_click(object sender, RoutedEventArgs e)
         {
+            results = MainPage.send_posts();
             if (results == null)
             {
                 errorSearch.Text = "Wait for tweets to load";
@@ -235,6 +237,12 @@ namespace InternshipApp
             user.ACL = new ParseACL(ParseUser.CurrentUser);
             await user.SaveAsync();
             ParseUser.LogOut();
+
+            saved_searches.Clear();
+            save_general.Clear();
+            save_location.Clear();
+            save_major.Clear();
+            Individual.Bookmark_Clear();
 
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }

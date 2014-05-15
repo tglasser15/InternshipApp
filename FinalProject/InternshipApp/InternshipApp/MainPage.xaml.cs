@@ -97,13 +97,20 @@ namespace InternshipApp
 
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
+            bool fill_posts = false;
             if (container != null && container2 != null)
             {
-                foreach (TwitterStatus ts in container)
-                    posts.Add(ts);
-                foreach (TwitterStatus ts in container2)
-                    posts.Add(ts);
+                if (fill_posts == false)
+                {
+                    foreach (TwitterStatus ts in container)
+                        posts.Add(ts);
+                    foreach (TwitterStatus ts in container2)
+                        posts.Add(ts);
+                    fill_posts = true;
+                }
             }
+
+            
 
             if (posts.Count == 0)
             {
@@ -209,6 +216,12 @@ namespace InternshipApp
                         Password = passwordBox.Password,
                         Email = textEmail.Text
                     };
+
+                    //var check = await (from _user in ParseUser.Query
+                    //                   where _user.Get<string>("username") == user.Username
+                    //                   select _user).FindAsync();
+
+
 
                     await user.SignUpAsync();
 

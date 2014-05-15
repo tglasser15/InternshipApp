@@ -67,5 +67,10 @@ namespace InternshipApp
         {
             return bookmarks;
         }
+
+        public static void Bookmark_Clear()
+        {
+            bookmarks.Clear();
+        }
     }
 }
