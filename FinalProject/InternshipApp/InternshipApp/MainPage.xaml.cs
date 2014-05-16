@@ -18,25 +18,31 @@ namespace InternshipApp
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        //flags to determine whether or not a certain field or email is invalid
         bool invalidEmail;
         bool invalidField;
+        //flag to determine whether or not posts have been pulled from twitter 
+        bool fill_posts = false;
+
+        //secret API keys and tokens to access twitter permissions
         private string API_key = "v9QxYFQFTVUcImWwXq5Yhw";
         private string API_secret = "hVoDkA3Z9AtWAS6rS4scvZU4e2BntEe9Jth38PbPQ";
         private string AccessToken = "2412105906-r6teCDYAYMb81nCDazHbWszl0eE3uXYIpJj5jGm";
         private string AccessToken_secret = "BdR89dprE8NMdJc1tkCjoU5fCqU90XKGWpFSaR19VE7zg";
+        //containers to gather the twitter feeds
+        static IEnumerable<TwitterStatus> container;    //from internshipp
+        static IEnumerable<TwitterStatus> container2;   //from Internship_DNF
 
-        static IEnumerable<TwitterStatus> bookmarks;
-        static IEnumerable<TwitterStatus> container;
-        static IEnumerable<TwitterStatus> container2;
-        static ObservableCollection<TwitterStatus> posts = new ObservableCollection<TwitterStatus>();
-        static List<SearchItem> saved_searches = new List<SearchItem>();
 
-        static List<string> general = new List<string>();
-        static List<string> major = new List<string>();
-        static List<string> location = new List<string>();
+        static IEnumerable<TwitterStatus> bookmarks;    //container for bookmarks retrieved from Parse
+        static ObservableCollection<TwitterStatus> posts = new ObservableCollection<TwitterStatus>();   //contains the total amount of twitter posts
+        static List<SearchItem> saved_searches = new List<SearchItem>(); //contains all the search fields
 
-        bool fill_posts = false;
-        
+        //search fields pulled from Parsed
+        List<string> general = new List<string>();
+        List<string> major = new List<string>();
+        List<string> location = new List<string>();
+
         public MainPage()
         {
             InitializeComponent();
@@ -47,17 +53,16 @@ namespace InternshipApp
             //    NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
             //}
 
+            //preset invalid fields to false
             invalidEmail = false;
             invalidField = false;
-
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            posts.Clear();
-            //static IEnumerable<TwitterStatus> temp;
+            posts.Clear(); //upon each visit of page, clear posts to be reinitialized, otherwise posts will keep expanding (with same tweets)
+
+            //Source: http://code.msdn.microsoft.com/wpapps/Twitter-Sample-using-f36bab75 
             if (NetworkInterface.GetIsNetworkAvailable())
             {
                 //validate API keys
@@ -67,6 +72,7 @@ namespace InternshipApp
                 //ScreenName is the profile name of the twitter user.
                 try
                 {
+                    //pulling from two separate twitter screen names
                     service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "internshipp" }, (ts, rep) => //ts = twitter feeds
                     {
                         if (rep.StatusCode == HttpStatusCode.OK)
@@ -87,6 +93,7 @@ namespace InternshipApp
                 }
                 catch (Exception ex)
                 {
+                    //for debugging purposes
                     Console.WriteLine(ex.Message);
                 }
             }
@@ -99,7 +106,7 @@ namespace InternshipApp
 
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
-            
+            //if not all of the tweets have been pulled, do not add to total posts
             if (container != null && container2 != null)
             {
                 if (fill_posts == false)
@@ -111,7 +118,8 @@ namespace InternshipApp
                     fill_posts = true;
                 }
             }
-
+            
+            //if there are no posts. prompt user to wait and try again
             if (posts.Count == 0)
             {
                 textBlockError.Visibility = Visibility.Visible;
@@ -119,79 +127,76 @@ namespace InternshipApp
             }
             else
             {
-
-                checkFields();
+                checkFields(); //check if user input is valid
                 if (invalidField == false)
                 {
+                    //user identification output for Parse authorization
                     string myname = textEmail.Text;
                     string mypass = passwordBox.Password;
 
-
+                    //Parse uses various try and catch due to sync implementations - would want to catch errors or exceptions instead of continuing or breaking
                     try
                     {
-                        var user = await ParseUser.LogInAsync(myname, mypass);
+                        var user = await ParseUser.LogInAsync(myname, mypass); //login
                         //login successful
 
                         //Get bookmarks
-                        List<string> bookmark_holder = new List<string>();
+                        List<string> bookmark_holder = new List<string>(); //container to hold text of bookmarks
                         try
                         {
-                            bookmark_holder = user.Get<IList<string>>("Bookmarks").ToList();
-                            ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>();
-                            IEnumerable<TwitterStatus> temp;
+                            bookmark_holder = user.Get<IList<string>>("Bookmarks").ToList();    //retrieve the bookmark strings from Parse
+                            ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>(); //temporary holder from tweets
+                            IEnumerable<TwitterStatus> temp; //used in replacement of posts to avoid overriding posts
                             foreach (string s in bookmark_holder)
                             {
-                                temp = posts.Where(o => o.Text.Contains(s)).ToList();
+                                temp = posts.Where(o => o.Text.Contains(s)).ToList(); //if any of the posts contain the bookmark text, 
                                 foreach (TwitterStatus ts in temp)
                                 {
-                                    queue.Add(ts);
+                                    queue.Add(ts); //add to the queue 
                                 }
                             }
 
                             if (queue != null)
-                                bookmarks = queue.ToList();
+                                bookmarks = queue.ToList(); //set queue to bookmarks which holds user's previous bookmarks
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
                         }
 
-
-                        ////////////////////////////////
-
                         //Get saved searches
                         try
                         {
+                            //retrieve user's saved search fields
                             general = user.Get<IList<string>>("Save_General").ToList();
                             major = user.Get<IList<string>>("Save_Major").ToList();
                             location = user.Get<IList<string>>("Save_Location").ToList();
 
                             for (int i = 0; i < general.Count; i++)
                             {
-                                saved_searches.Add(new SearchItem(general[i], major[i], location[i]));
+                                saved_searches.Add(new SearchItem(general[i], major[i], location[i])); //add search fields back into originally class object
                             }
                         }
                         catch (Exception ex)
                         {
+                            //debugging purposes
                             Console.WriteLine(ex.Message);
                         }
 
 
-                        NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+                        NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative)); //navigate to default search page upon login completion
                     }
 
                     catch (Exception ex)
                     {
-                        Console.WriteLine(ex.Message);
-                        checkValidEmail(myname);
-                        //login failed
+                        Console.WriteLine(ex.Message); //for debugging purposes
+                        checkValidEmail(myname);    //check if username is valid email
+                        //if login failed
                         textBlockError.Visibility = Visibility.Visible;
                         if (invalidEmail == true)
-                            textBlockError.Text = "Account does not exist.";
+                            textBlockError.Text = "Account does not exist."; 
                         else
                             textBlockError.Text = "Failed to login";
-
-
                     }
                 }
             }
@@ -230,6 +235,7 @@ namespace InternshipApp
                 {
                     try
                     {
+                        //create new user
                         var user = new ParseUser()
                         {
                             Username = textEmail.Text,
@@ -237,18 +243,12 @@ namespace InternshipApp
                             Email = textEmail.Text
                         };
 
-                        //var check = await (from _user in ParseUser.Query
-                        //                   where _user.Get<string>("username") == user.Username
-                        //                   select _user).FindAsync();
-
-
-
-                        await user.SignUpAsync();
-                        NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+                        await user.SignUpAsync(); //sign new user
+                        NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative)); //navigate to default page
                     }
-
                     catch (Parse.ParseException ex)
                     {
+                        //if user already exists
                         textBlockError.Visibility = Visibility.Visible;
                         if (ex.Code == ParseException.ErrorCode.UsernameTaken)
                             textBlockError.Text = "Username already taken.";
@@ -259,18 +259,7 @@ namespace InternshipApp
                 }
             }
         }
-        public static IEnumerable<TwitterStatus> send_bookmarks()
-        {
-            return bookmarks;
-        }
-        public static ObservableCollection<TwitterStatus> send_posts()
-        {
-            return posts;
-        } 
-        public static List<SearchItem> send_savedSearches()
-        {
-            return saved_searches;
-        }
+        
         private void checkFields()
         {
             if (textEmail.Text != "")
@@ -313,11 +302,12 @@ namespace InternshipApp
             }
 
 
-        }
-        private static bool ValidateEmail(string str)
+        }   //check for invali fields
+        private bool ValidateEmail(string str)
         {
             return Regex.IsMatch(str, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
-        }
+        }   //function for validating email
+        //focus property of password box
         private void passwordBox_GotFocus(object sender, RoutedEventArgs e)
         {
             textBlockError.Text = "";
@@ -329,6 +319,17 @@ namespace InternshipApp
             textBlockError.Visibility = Visibility.Collapsed;
         }
 
-
+        public static IEnumerable<TwitterStatus> send_bookmarks()
+        {
+            return bookmarks;
+        } //send user's bookmarks
+        public static ObservableCollection<TwitterStatus> send_posts()
+        {
+            return posts;
+        } //send total posts for viewing and searching
+        public static List<SearchItem> send_savedSearches()
+        {
+            return saved_searches;
+        }   //send user's saved searches
     }
 }

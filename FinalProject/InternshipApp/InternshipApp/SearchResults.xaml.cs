@@ -19,14 +19,13 @@ using Parse;
 
 namespace InternshipApp
 {
-    //TS = part of tweetsharp library
     public partial class SearchResults : PhoneApplicationPage
     {
+        static IEnumerable<TweetSharp.TwitterStatus> results;   //container for results from the search page
+        static string internship_information; //string holder for internship information, ready to be sent for individual viewing
+        static List<string> result_indexing = new List<string>();   //container to hold all the text of the results
+        static int index;   //index used with result_indexing - determines potential bookmarking if user decides to
 
-        static IEnumerable<TweetSharp.TwitterStatus> results;//ienumerable holder 
-        static string internship_information; //string holder for internship information
-        static List<string> result_indexing = new List<string>();
-        static int index;
         public SearchResults()
         {
             InitializeComponent();
@@ -36,16 +35,17 @@ namespace InternshipApp
 
         public void SearchResults_Loaded(object sender, RoutedEventArgs e)
         {
-            tweetList.ItemsSource = results;
+            tweetList.ItemsSource = results; //set data binding
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             string parameterValue = NavigationContext.QueryString["param"];
 
+            //if navigated from the search page
             if (parameterValue == "results")
             {
-                results = SearchPage.send_results();
+                results = SearchPage.send_results(); //retrieve filtered results
                 //if there are no results, display error message
                 if (results.Count() == 0)
                 {
@@ -54,6 +54,8 @@ namespace InternshipApp
 
                 }
             }
+
+            //if navigated from saved searches
             if (parameterValue == "save_search")
             {
                 results = SaveSearchPage.send_results();
@@ -65,6 +67,8 @@ namespace InternshipApp
 
                 }
             }
+
+            //if the user wishes to view all of the tweets
             if (parameterValue == "all")
             {
                 results = MainPage.send_posts();
@@ -74,9 +78,9 @@ namespace InternshipApp
 
         private void internshipButton(object sender, RoutedEventArgs e)
         {
-            result_indexing = results.Select(o => o.Text).ToList();
+            result_indexing = results.Select(o => o.Text).ToList();     //retrieve all internships in text 
             internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
-            index = result_indexing.IndexOf(internship_information);
+            index = result_indexing.IndexOf(internship_information);    //if internship information matches the text in the results_indexing, retrieve the index for that internship 
             NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative)); //navigate to information on individual internships
         }
 
@@ -84,30 +88,15 @@ namespace InternshipApp
         public static string send_internshipInformation()
         {
             return internship_information;
-        }
+        } //send internship information for individual viewing
         public static int send_index() 
         {
             return index;
-        }
+        }   //send the index if the user decides to bookmark the individual internship
         public static IEnumerable<TweetSharp.TwitterStatus> send_results()
         {
             return results;
-        }
-
-        private async void Logout_Click(object sender, EventArgs e)
-        {
-            IEnumerable<TweetSharp.TwitterStatus> BookmarkList = Bookmarks.send_bookmarkList();
-            List<string> str_books = new List<string>();
-            str_books = BookmarkList.Select(o => o.Text).ToList();
-
-            var user = ParseUser.CurrentUser;
-            user["test"] = str_books;
-            user.ACL = new ParseACL(ParseUser.CurrentUser);
-            await user.SaveAsync();
-            ParseUser.LogOut();
-
-            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-        }
+        }   //send the results so the use can bookmark the internship
 
     }
 }

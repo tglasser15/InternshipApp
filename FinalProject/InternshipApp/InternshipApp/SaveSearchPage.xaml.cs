@@ -17,25 +17,28 @@ namespace InternshipApp
 {
     public partial class SaveSearchPage : PhoneApplicationPage
     {
-        static List<SearchItem> saved_searches = new List<SearchItem>();
-        static IEnumerable<TweetSharp.TwitterStatus> results;
+        static List<SearchItem> saved_searches = new List<SearchItem>(); //contains all of the filters from search  
+        static IEnumerable<TweetSharp.TwitterStatus> results; //container for results - mainly used for seaching
+
         public SaveSearchPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SaveSearchPage_Loaded);
-            results = MainPage.send_posts();
         }
 
         void SaveSearchPage_Loaded(object sender, RoutedEventArgs e)
         {
             results = MainPage.send_posts();
+
+            //if first visit
             if (SearchPage.send_savedSearches().Count == 0)
                 saved_searches = MainPage.send_savedSearches();
             else
                 saved_searches = SearchPage.send_savedSearches();
 
-            saved_searches = saved_searches.Distinct().ToList();
+            saved_searches = saved_searches.Distinct().ToList(); //create distinct list
 
+            //create new listbox items
             for (int i = 0; i < saved_searches.Count; i++)
             {
                 ListBoxItem li = new ListBoxItem();
@@ -47,6 +50,7 @@ namespace InternshipApp
             }
         }
 
+        //iterate through main pages
         private void Search_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
@@ -59,25 +63,28 @@ namespace InternshipApp
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
-        public static void saves_clear()
-        {
-            saved_searches.Clear();
-        }
+        
+        //if user clicks on a saved search, user is able to view results from filters
         public void save_Click(object sender, EventArgs e)
         {
-            int index = (sender as ListBox).SelectedIndex;
-            var search = saved_searches[index];
-            List<string> holder = new List<string>()
+            int index = (sender as ListBox).SelectedIndex; //get index of listbox item
+            var search = saved_searches[index]; //get matching search from saved_searches list
+
+
+            List<string> holder = new List<string>() //temporary holder for keys
             {
                 search.GeneralSearch, search.DisciplineSearch, search.Location
             };
             List<string> keys = new List<string>();
             
+            //exclude any empty string literals
             foreach (string s in holder)
             {
                 if (s != "")
                     keys.Add(s);
             }
+
+            //see comments from SearchPage.xaml
 
             char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
             string[] words = search.GeneralSearch.Split(delimiterChars);
@@ -118,9 +125,12 @@ namespace InternshipApp
         public static IEnumerable<TweetSharp.TwitterStatus> send_results()
         {
             return results;
-        }
+        } //send results filtered by search criteria to be viewed. 
 
-        
+        public static void saves_clear()
+        {
+            saved_searches.Clear();
+        } //clear the saved_searches upon logout
 
     }
 }

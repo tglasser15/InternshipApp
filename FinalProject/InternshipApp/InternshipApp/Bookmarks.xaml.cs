@@ -14,41 +14,37 @@ namespace InternshipApp
 {
     public partial class Bookmarks : PhoneApplicationPage
     {
-        static IEnumerable<TweetSharp.TwitterStatus> BookmarkList;
-        static string internship_information;
+        static IEnumerable<TweetSharp.TwitterStatus> BookmarkList;  //container for all bookmarks
+        static string internship_information;   //holds string text of the internship information within each item
         public Bookmarks()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(Bookmarks_Loaded);
-            
         }
 
         void Bookmarks_Loaded(object sender, RoutedEventArgs e)
         {
+            //if the bookmarks page is the first visit, initialize with bookmarks from the main page
             if (Individual.send_bookmarks().Count == 0)
                 BookmarkList = MainPage.send_bookmarks();
             else
                 BookmarkList = Individual.send_bookmarks();
 
+            //if BookmarkList is not null, proceed to data binding the BookmarkList
             if (BookmarkList != null)
             {
-                BookmarkList = BookmarkList.Distinct().ToList();
+                BookmarkList = BookmarkList.Distinct().ToList(); //create distinct list
                 tweetList.ItemsSource = BookmarkList;
             }
         }
 
         private void internshipButton(object sender, RoutedEventArgs e)
         {
-
-            internship_information = (sender as Button).Content.ToString(); //retrieve content of item on listbox
+            internship_information = (sender as Button).Content.ToString(); //retrieve content of item in listbox
             NavigationService.Navigate(new Uri("/Individual.xaml?param=Bookmark", UriKind.Relative)); //navigate to information on individual internships
         }
 
-        public static string send_internshipInformation()
-        {
-            return internship_information;
-        }
-
+        //navigating between the three pages
         private void Search_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
@@ -61,10 +57,15 @@ namespace InternshipApp
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
         }
+
+        public static string send_internshipInformation()
+        {
+            return internship_information;
+        }   //sends the internship information of the internship clicked on
         public static IEnumerable<TweetSharp.TwitterStatus> send_bookmarkList()
         {
             return BookmarkList;
-        }
+        }   //send the BookmarkList
 
         
     }

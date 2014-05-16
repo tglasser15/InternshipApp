@@ -8,12 +8,14 @@ namespace InternshipApp
 {
     public class SearchItem
     {
+        //searches by property
         public string GeneralSearch { get; set; }
         public string DisciplineSearch { get; set; }
         public string Location { get; set; }
-        List<SearchItem> saved_searches = new List<SearchItem>();
+        
 
         public SearchItem() { }
+        //intializing
         public SearchItem(string searchbar, string fieldbar, string locationbar)
         {
             this.GeneralSearch = searchbar;

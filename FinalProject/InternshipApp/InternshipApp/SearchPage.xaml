@@ -64,11 +64,6 @@
             <shell:ApplicationBarIconButton x:Name="savesearch" IsEnabled="True" Click="SavedSearches_Click" IconUri="/save.png" Text="savedsearches"/>
             <shell:ApplicationBarIconButton x:Name="logout" IsEnabled="True" Click="Logout_Click" Text="Logout" IconUri="/logout.png.png" />
 
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Click="Logout_Click" Text="Logout" />
-            </shell:ApplicationBar.MenuItems>
-
-
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
