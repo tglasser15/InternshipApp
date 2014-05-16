@@ -31,7 +31,7 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchResults_Loaded); //TS
-            //results = SearchPage.send_results(); //retrieve results from filtered search
+            results = SearchPage.send_results(); //retrieve results from filtered search
         }
 
         public void SearchResults_Loaded(object sender, RoutedEventArgs e)

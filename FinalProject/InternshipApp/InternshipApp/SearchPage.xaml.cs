@@ -35,7 +35,7 @@ namespace InternshipApp
         static List<string> save_location = new List<string>();
 
         //default search entries 
-        private string defaultSearch = "Search Here";
+        private string defaultSearch = "Search";
         private string defaultLocation = "Enter Location";
         private string defaultField = "Please select a field...";
 
@@ -45,8 +45,7 @@ namespace InternshipApp
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SearchPage_Loaded); //TS
-            
-
+            results = MainPage.send_posts();
         }
 
         //set textboxes based on whether or not they have been clicked
@@ -54,7 +53,6 @@ namespace InternshipApp
         {
             SearchBar.Text = "";
         }
-
         private void SearchBar_LostFocus(object sender, RoutedEventArgs e)
         {
             if (SearchBar.Text == string.Empty)
@@ -64,7 +62,6 @@ namespace InternshipApp
         {
             LocationSearch.Text = "";
         }
-
         private void LocationBar_LostFocus(object sender, RoutedEventArgs e)
         {
             if (LocationSearch.Text == string.Empty)
@@ -72,9 +69,9 @@ namespace InternshipApp
         }
         //////////////////
 
-        //TS
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
+            results = MainPage.send_posts();
             if (MainPage.send_bookmarks() != null)
                 BookmarkList = MainPage.send_bookmarks();
             else
@@ -94,7 +91,6 @@ namespace InternshipApp
             string field = ((ListPickerItem)OptionSelector.SelectedItem).Content.ToString();
             field = field.ToUpper();
 
-            //if there are no results, allow for tweets to load
 
                 //if text edit fields are in their default texts, report invalid search
                 if ((SearchBar.Text == defaultSearch || SearchBar.Text == defaultSearch.ToUpper()) && (field == defaultField || field == defaultField.ToUpper()) && (LocationSearch.Text == defaultLocation || LocationSearch.Text == defaultLocation.ToUpper()))
@@ -137,16 +133,19 @@ namespace InternshipApp
 
                         results = queue.Distinct().ToList();
                     }
-                    //save searches
-                    if (SearchBar.Text == defaultSearch.ToUpper())
-                        SearchBar.Text = string.Empty;
-                    if (LocationSearch.Text == defaultLocation.ToUpper())
-                        LocationSearch.Text = string.Empty;
-                    if (field == defaultField.ToUpper())
-                        field = string.Empty;
-                    
+                    if (results.Count() != 0)
+                    {
+                        //save searches
+                        if (SearchBar.Text == defaultSearch.ToUpper())
+                            SearchBar.Text = string.Empty;
+                        if (LocationSearch.Text == defaultLocation.ToUpper())
+                            LocationSearch.Text = string.Empty;
+                        if (field == defaultField.ToUpper())
+                            field = string.Empty;
 
-                    saved_searches.Add(new SearchItem(SearchBar.Text, field, LocationSearch.Text));
+
+                        saved_searches.Add(new SearchItem(SearchBar.Text, field, LocationSearch.Text));
+                    }
 
                     NavigationService.Navigate(new Uri("/SearchResults.xaml?param=results", UriKind.Relative)); //navigate to search results page
                 }
@@ -209,16 +208,19 @@ namespace InternshipApp
             return saved_searches;
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
         private async void Logout_Click(object sender, EventArgs e)
         {
             List<string> str_books = new List<string>();
             str_books = BookmarkList.Select(o => o.Text).ToList();
-            for (int i = 0; i < saved_searches.Count; i++)
+            for (int i = saved_searches.Count-1; i > saved_searches.Count-6; i--)
             {
                 try
                 {
-                    if (i > 10)
-                        break;
                     save_general.Add(saved_searches.ElementAt(i).GeneralSearch);
                     save_major.Add(saved_searches.ElementAt(i).DisciplineSearch);
                     save_location.Add(saved_searches.ElementAt(i).Location);
@@ -243,6 +245,7 @@ namespace InternshipApp
             save_location.Clear();
             save_major.Clear();
             Individual.Bookmark_Clear();
+            SaveSearchPage.saves_clear();
 
             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
         }

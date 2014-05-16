@@ -36,23 +36,25 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height=""/>
                         </Grid.RowDefinitions>
-
-                        <TextBlock  Grid.Row="0" HorizontalAlignment="Left" Foreground="Black"
+                        <Button Content="{Binding Text}" Grid.Row="0" Grid.RowSpan="3" BorderBrush="Transparent" Click="save_Click"/>
+                            <TextBlock Grid.Row="0" HorizontalAlignment="Left" Foreground="Black"
                                     Padding="0,10,0,0" FontSize="24">
                             <Run Text="General  :   " Foreground="LightGray"/>
                             <Run Text="{Binding GeneralSearch}" Foreground="White"/>
-                        </TextBlock>
-                        <TextBlock Grid.Row="1" FontSize="24" Foreground="Black" HorizontalAlignment="Left">
+                            </TextBlock>
+                            <TextBlock Grid.Row="1" FontSize="24" Foreground="Black" HorizontalAlignment="Left">
                             <Run Text="Major     :   " Foreground="LightGray"/>
                             <Run Text="{Binding DisciplineSearch}" Foreground="White" />
-                         </TextBlock>
-                        <TextBlock TextWrapping="Wrap" Foreground="Black"
+                            </TextBlock>
+                            <TextBlock TextWrapping="Wrap" Foreground="Black"
                                Grid.Row="2" HorizontalAlignment="Left" FontSize="24" Padding="0,0,0,10">
                             <Run Text="Location :   " Foreground="LightGray"/>
                             <Run Text="{Binding Location}" Foreground="White"/>
-                        </TextBlock>
-                        <Line Stroke="White" X1="0" X2="500" />
+                            </TextBlock>
+                            <Line Stroke="White" X1="0" X2="500" />
+                        
                     </Grid>
                 </DataTemplate>
             </Grid.Resources>

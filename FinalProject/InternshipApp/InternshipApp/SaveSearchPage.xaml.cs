@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Parse;
+using System.Windows.Data;
 
 namespace InternshipApp
 {
@@ -45,6 +46,19 @@ namespace InternshipApp
         private void SavedSearches_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SaveSearchPage.xaml", UriKind.Relative));
+        }
+        public static void saves_clear()
+        {
+            saved_searches.Clear();
+        }
+        public void save_Click(object sender, EventArgs e)
+        {
+            var box = (sender as Button);
+            box.GetBindingExpression(Button.).UpdateSource(); 
+            //result_indexing = results.Select(o => o.Text).ToList();
+            //internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
+            //index = result_indexing.IndexOf(internship_information);
+            //NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative)); //navigate to information on individual 
         }
 
         

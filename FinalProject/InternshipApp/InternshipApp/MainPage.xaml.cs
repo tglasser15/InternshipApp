@@ -13,7 +13,8 @@ using System.Net.NetworkInformation;
 using TweetSharp;
 using Parse;
 using System.Collections.ObjectModel;
-
+using System.Threading;
+using System.Net.NetworkInformation;
 namespace InternshipApp
 {
     public partial class MainPage : PhoneApplicationPage
@@ -34,16 +35,18 @@ namespace InternshipApp
         static List<string> general = new List<string>();
         static List<string> major = new List<string>();
         static List<string> location = new List<string>();
+
+        bool fill_posts = false;
         
         public MainPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
             //check if user is already logged on
-            if (ParseUser.CurrentUser != null)
-            {
-                NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
-            }
+            //if (ParseUser.CurrentUser != null)
+            //{
+            //    NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+            //}
 
             invalidEmail = false;
             invalidField = false;
@@ -67,7 +70,7 @@ namespace InternshipApp
                     service.ListTweetsOnUserTimeline(new ListTweetsOnUserTimelineOptions() { ScreenName = "internshipp" }, (ts, rep) => //ts = twitter feeds
                     {
                         if (rep.StatusCode == HttpStatusCode.OK)
-                        {
+                        { 
                             //bind
                             this.Dispatcher.BeginInvoke(() => { container = ts; });
                         }
@@ -92,12 +95,11 @@ namespace InternshipApp
                 MessageBox.Show("Please check your internet connection.");
             }
 
-
         }
 
         public async void buttonLogin(object sender, RoutedEventArgs e)
         {
-            bool fill_posts = false;
+            
             if (container != null && container2 != null)
             {
                 if (fill_posts == false)
@@ -110,15 +112,14 @@ namespace InternshipApp
                 }
             }
 
-            
-
             if (posts.Count == 0)
             {
                 textBlockError.Visibility = Visibility.Visible;
-                textBlockError.Text = "Loading";
+                textBlockError.Text = "Wait for tweets. Click again.";
             }
             else
             {
+
                 checkFields();
                 if (invalidField == false)
                 {
@@ -130,7 +131,7 @@ namespace InternshipApp
                     {
                         var user = await ParseUser.LogInAsync(myname, mypass);
                         //login successful
-                        
+
                         //Get bookmarks
                         List<string> bookmark_holder = new List<string>();
                         try
@@ -155,7 +156,7 @@ namespace InternshipApp
                             Console.WriteLine(ex.Message);
                         }
 
-                       
+
                         ////////////////////////////////
 
                         //Get saved searches
@@ -224,16 +225,18 @@ namespace InternshipApp
 
 
                     await user.SignUpAsync();
-
+                    NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
                 }
 
-                catch (Exception ex)
+                catch (Parse.ParseException ex)
                 {
                     textBlockError.Visibility = Visibility.Visible;
-                    textBlockError.Text = "Failed to sign up.";
+                    if (ex.Code == ParseException.ErrorCode.UsernameTaken)
+                        textBlockError.Text = "Username already taken.";
+                    else
+                        textBlockError.Text = "Failed to sign up.";
                 }
 
-                NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
             }
         }
         public static IEnumerable<TwitterStatus> send_bookmarks()
