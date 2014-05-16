@@ -54,6 +54,17 @@ namespace InternshipApp
 
                 }
             }
+            if (parameterValue == "save_search")
+            {
+                results = SaveSearchPage.send_results();
+                //if there are no results, display error message
+                if (results.Count() == 0)
+                {
+                    emptyResult.Text = "No results...";
+                    emptyResult.Visibility = Visibility.Visible;
+
+                }
+            }
             if (parameterValue == "all")
             {
                 results = MainPage.send_posts();

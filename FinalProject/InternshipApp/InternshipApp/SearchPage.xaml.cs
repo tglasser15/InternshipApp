@@ -71,6 +71,9 @@ namespace InternshipApp
 
         void SearchPage_Loaded(object sender, RoutedEventArgs e)
         {
+            SearchBar.Text = defaultSearch;
+            LocationSearch.Text = defaultLocation;
+            
             results = MainPage.send_posts();
             if (MainPage.send_bookmarks() != null)
                 BookmarkList = MainPage.send_bookmarks();
@@ -107,16 +110,26 @@ namespace InternshipApp
                         SearchBar.Text,field,LocationSearch.Text
                     };
 
-                    char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+                    char[] delimiterChars = { ' ', ',', '.', ':', '\t'};
                     string[] words = SearchBar.Text.Split(delimiterChars);
+                    string[] words2 = field.Split(delimiterChars);
+                    string[] words3 = LocationSearch.Text.Split(delimiterChars);
                     foreach (string s in words)
                     {
-                        keys.Add(s);
+                        if (s != "" && s.Count() != 1)
+                            keys.Add(s);
+                    }
+                    foreach (string s in words2)
+                    {
+                        if (s != "" && s.Count() != 1)
+                            keys.Add(s);
+                    }
+                    foreach (string s in words3)
+                    {
+                        if (s != "" && s.Count() != 1)
+                            keys.Add(s);
                     }
 
-                   // List<string> queue = new List<string>();
-                    
-                    //int index = -1;
                     ObservableCollection<TwitterStatus> queue = new ObservableCollection<TwitterStatus>();
                     IEnumerable<TwitterStatus> temp;
                     //filter results based on what is typed in the search bar

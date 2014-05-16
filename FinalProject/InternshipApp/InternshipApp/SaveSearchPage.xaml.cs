@@ -9,30 +9,42 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Parse;
 using System.Windows.Data;
+using System.Collections.ObjectModel;
+
+
 
 namespace InternshipApp
 {
     public partial class SaveSearchPage : PhoneApplicationPage
     {
         static List<SearchItem> saved_searches = new List<SearchItem>();
-        static List<string> save_general = new List<string>();
-        static List<string> save_major = new List<string>();
-        static List<string> save_location = new List<string>();
+        static IEnumerable<TweetSharp.TwitterStatus> results;
         public SaveSearchPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(SaveSearchPage_Loaded);
+            results = MainPage.send_posts();
         }
 
         void SaveSearchPage_Loaded(object sender, RoutedEventArgs e)
         {
+            results = MainPage.send_posts();
             if (SearchPage.send_savedSearches().Count == 0)
                 saved_searches = MainPage.send_savedSearches();
             else
                 saved_searches = SearchPage.send_savedSearches();
 
             saved_searches = saved_searches.Distinct().ToList();
-            tweetList.ItemsSource = saved_searches;
+
+            for (int i = 0; i < saved_searches.Count; i++)
+            {
+                ListBoxItem li = new ListBoxItem();
+                string str =  "General : " + saved_searches[i].GeneralSearch + "\n"
+                            + "Major   : " + saved_searches[i].DisciplineSearch + "\n"
+                            + "Location: " + saved_searches[i].Location + "\n";
+                li.Content = str;
+                listbox.Items.Add(li);
+            }
         }
 
         private void Search_Click(object sender, EventArgs e)
@@ -53,12 +65,59 @@ namespace InternshipApp
         }
         public void save_Click(object sender, EventArgs e)
         {
-            var box = (sender as Button);
-            box.GetBindingExpression(Button.).UpdateSource(); 
-            //result_indexing = results.Select(o => o.Text).ToList();
-            //internship_information = (sender as Button).Content.ToString(); //retrieve content from the items in the listbox
-            //index = result_indexing.IndexOf(internship_information);
-            //NavigationService.Navigate(new Uri("/Individual.xaml?param=Results", UriKind.Relative)); //navigate to information on individual 
+            int index = (sender as ListBox).SelectedIndex;
+            var search = saved_searches[index];
+            List<string> holder = new List<string>()
+            {
+                search.GeneralSearch, search.DisciplineSearch, search.Location
+            };
+            List<string> keys = new List<string>();
+            
+            foreach (string s in holder)
+            {
+                if (s != "")
+                    keys.Add(s);
+            }
+
+            char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+            string[] words = search.GeneralSearch.Split(delimiterChars);
+            string[] words2 = search.DisciplineSearch.Split(delimiterChars);
+            string[] words3 = search.Location.Split(delimiterChars);
+            foreach (string s in words)
+            {
+                if (s != "" && s.Count() != 1)
+                    keys.Add(s);
+            }
+            foreach (string s in words2)
+            {
+                if (s != "" && s.Count() != 1)
+                    keys.Add(s);
+            }
+            foreach (string s in words3)
+            {
+                if (s != "" && s.Count() != 1)
+                    keys.Add(s);
+            }
+
+            ObservableCollection<TweetSharp.TwitterStatus> queue = new ObservableCollection<TweetSharp.TwitterStatus>();
+            IEnumerable<TweetSharp.TwitterStatus> temp;
+            foreach (string k in keys)
+            {
+                temp = results.Where(o => o.Text.ToUpper().Contains(k)).ToList();
+                foreach (TweetSharp.TwitterStatus ts in temp)
+                {
+                    queue.Add(ts);
+                }
+            }
+
+            results = queue.Distinct().ToList();
+
+            NavigationService.Navigate(new Uri("/SearchResults.xaml?param=save_search", UriKind.Relative));
+        }
+
+        public static IEnumerable<TweetSharp.TwitterStatus> send_results()
+        {
+            return results;
         }
 
         

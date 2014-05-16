@@ -191,6 +191,7 @@
     <Content Include="bookmark2.png" />
     <Content Include="bookmarks.png" />
     <Content Include="bookmarksLarge.png" />
+    <Content Include="logout.png.png" />
     <Content Include="save.png" />
     <Content Include="saveLarge.png" />
     <Content Include="search.png" />

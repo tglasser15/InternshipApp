@@ -14,7 +14,6 @@ using TweetSharp;
 using Parse;
 using System.Collections.ObjectModel;
 using System.Threading;
-using System.Net.NetworkInformation;
 namespace InternshipApp
 {
     public partial class MainPage : PhoneApplicationPage
@@ -57,6 +56,7 @@ namespace InternshipApp
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            posts.Clear();
             //static IEnumerable<TwitterStatus> temp;
             if (NetworkInterface.GetIsNetworkAvailable())
             {
@@ -206,37 +206,57 @@ namespace InternshipApp
         }
         public async void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            checkFields();
-            if (invalidField == false)
+            if (container != null && container2 != null)
             {
-                try
+                if (fill_posts == false)
                 {
-                    var user = new ParseUser()
+                    foreach (TwitterStatus ts in container)
+                        posts.Add(ts);
+                    foreach (TwitterStatus ts in container2)
+                        posts.Add(ts);
+                    fill_posts = true;
+                }
+            }
+
+            if (posts.Count == 0)
+            {
+                textBlockError.Visibility = Visibility.Visible;
+                textBlockError.Text = "Wait for tweets. Sign again.";
+            }
+            else
+            {
+                checkFields();
+                if (invalidField == false)
+                {
+                    try
                     {
-                        Username = textEmail.Text,
-                        Password = passwordBox.Password,
-                        Email = textEmail.Text
-                    };
+                        var user = new ParseUser()
+                        {
+                            Username = textEmail.Text,
+                            Password = passwordBox.Password,
+                            Email = textEmail.Text
+                        };
 
-                    //var check = await (from _user in ParseUser.Query
-                    //                   where _user.Get<string>("username") == user.Username
-                    //                   select _user).FindAsync();
+                        //var check = await (from _user in ParseUser.Query
+                        //                   where _user.Get<string>("username") == user.Username
+                        //                   select _user).FindAsync();
 
 
 
-                    await user.SignUpAsync();
-                    NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+                        await user.SignUpAsync();
+                        NavigationService.Navigate(new Uri("/SearchPage.xaml", UriKind.Relative));
+                    }
+
+                    catch (Parse.ParseException ex)
+                    {
+                        textBlockError.Visibility = Visibility.Visible;
+                        if (ex.Code == ParseException.ErrorCode.UsernameTaken)
+                            textBlockError.Text = "Username already taken.";
+                        else
+                            textBlockError.Text = "Failed to sign up.";
+                    }
+
                 }
-
-                catch (Parse.ParseException ex)
-                {
-                    textBlockError.Visibility = Visibility.Visible;
-                    if (ex.Code == ParseException.ErrorCode.UsernameTaken)
-                        textBlockError.Text = "Username already taken.";
-                    else
-                        textBlockError.Text = "Failed to sign up.";
-                }
-
             }
         }
         public static IEnumerable<TwitterStatus> send_bookmarks()
@@ -246,7 +266,7 @@ namespace InternshipApp
         public static ObservableCollection<TwitterStatus> send_posts()
         {
             return posts;
-        }
+        } 
         public static List<SearchItem> send_savedSearches()
         {
             return saved_searches;

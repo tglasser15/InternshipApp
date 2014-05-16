@@ -39,7 +39,7 @@
 
             <TextBlock Text="Location:" HorizontalAlignment="Left" Margin="10,120,0,390" TextWrapping="Wrap"  FontFamily="Segoe WP Light" FontSize="30" Width="140" Height="80" Grid.RowSpan="2" />
 
-            <Button Name="buttonSearch" Content="Go!" BorderBrush="Transparent" Background="White" Foreground="#FF4387C1" FontSize="60" FontFamily="Segoe WP Light" Margin="0,382,0,0" VerticalAlignment="Top" Height="118" Click="buttonSearch_Click" Grid.RowSpan="2"/>
+            <Button Name="buttonSearch" Content="Go!" BorderBrush="Transparent" Background="White" Foreground="#FF4387C1" FontSize="60" FontFamily="Segoe WP Light" Margin="0,370,0,0" VerticalAlignment="Top" Height="140" Click="buttonSearch_Click" Grid.RowSpan="2"/>
 
             <TextBox Name="LocationSearch" Background="White" Foreground="#545454" GotFocus="LocationBar_GotFocus" LostFocus="LocationBar_LostFocus" HorizontalAlignment="Left" Height="74" Margin="0,160,0,0" TextWrapping="Wrap" Text="Enter Location" VerticalAlignment="Top" Width="460" Grid.RowSpan="2"/>
 
@@ -62,6 +62,7 @@
             <shell:ApplicationBarIconButton x:Name="search"  IsEnabled="True" Click="Search_Click" IconUri="/search.png" Text="search" />
             <shell:ApplicationBarIconButton x:Name="bookmarks" IsEnabled="True" Click="Bookmarks_Click" IconUri="/bookmarks.png" Text="bookmars"/>
             <shell:ApplicationBarIconButton x:Name="savesearch" IsEnabled="True" Click="SavedSearches_Click" IconUri="/save.png" Text="savedsearches"/>
+            <shell:ApplicationBarIconButton x:Name="logout" IsEnabled="True" Click="Logout_Click" Text="Logout" IconUri="/logout.png.png" />
 
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Click="Logout_Click" Text="Logout" />
